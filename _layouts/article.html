@@ -1,8 +1,6 @@
 ---
 layout : frame
-belong : blog
 ---
-<div class="article">
-<h2>{{ page.title }}</h2><div class="clr"></div>
+<h1>{{ page.title }}</h1>
+<p style="margin:0:">{{ page.date | date_to_long_string }} | CATEGORY:<a href="/categories/{{ page.category }}">{{ page.category }}</a> | TAGS:{% for tag in page.tags %}<a href="/tag/{{ tag }}">{{ tag }}</a>&nbsp;{% endfor %}</p>
 {{ content }}
-</div>
