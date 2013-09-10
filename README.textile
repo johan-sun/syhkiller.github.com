@@ -4,4 +4,4 @@ jekyll 源代码
 
 add alias
 
-@alias blogupdate="([ -d _site ] || (echo 'update at top dir' && false)) && (( git status | grep 'nothing to commit' ) || ( jekyll build && git push && cd _site && git add -A && git commit -m 'auto build @ `date`' && git push && cd .. ))"@
+@alias blogupdate="([ -d _site ] || (echo 'update at top dir' && false)) && ( jekyll build && git push && cd _site && git add -A && git commit -m 'auto build @ `date`' && git push && cd .. )"@
