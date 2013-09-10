@@ -1,6 +1,8 @@
 h1. 孙渊汇的个人主页
 
-jekyll 源代码
+"个人主页":https://syhkiller.github.com
+
+jekyll build 源码见src分支
 
 add alias
 
