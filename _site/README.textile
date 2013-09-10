@@ -1,0 +1,7 @@
+h1. 孙渊汇的个人主页
+
+jekyll 源代码
+
+add alias
+
+@alias blogupdate='jekyll build && git push && cd _site && git push'@
