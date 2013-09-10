@@ -4,6 +4,6 @@ title : 测试博客
 category : test
 tags : [ c, cpp, java, python ]
 ---
-p. 第一段内容
+第一段内容
 
-p. 第二段内容
+第二段内容
