@@ -1,7 +1,5 @@
 h1. 孙渊汇的个人主页
 
-jekyll 源代码
+"个人主页":https://syhkiller.github.com
 
-add alias
-
-@alias blogupdate="([ -d _site ] || (echo 'update at top dir' && false)) && ( jekyll build && git push && cd _site && git add -A && git commit -m 'auto build @ `date`' && git push && cd .. )"@
+源代码见src分支
