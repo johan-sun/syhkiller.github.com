@@ -1,3 +1,5 @@
 h1. 孙渊汇的个人主页
-p. 模板正在更新
-p. 访问 "syhkiller.github.com":http://syhkiller.github.com
+
+"个人主页":http://syhkiller.github.com
+
+源代码见src分支
