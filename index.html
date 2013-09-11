@@ -4,7 +4,7 @@ title : 个人博客
 ---
 <ul>
 {% for post in site.posts %}
-	<li><h4><a href="{{ post.url }}" style="text-decoration:none;">{{ post.title }}</a></h4></li>
+	<li><h4><a href="{{ post.url }}">{{ post.date | date_to_long_string }} {{ post.title }}</a></h4></li>
 	<p>{{ post.excerpt }}</p>
 {% endfor %}
 </ul>
