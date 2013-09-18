@@ -1,0 +1,74 @@
+---
+layout : article
+title : 汉诺塔
+category : 数学
+tag : 具体数学
+---
+本次主要介绍: _汉诺塔_ 以及其变问题的最少移动次数解法
+
+* *经典汉诺塔*
+
+汉诺塔的问题简单描述下,有$n$个盘子,从$A$柱子移动到$B$柱子,每次一个,保证小得放在大得柱子上,$C$柱子作为辅助.求最小移动次数$T_{n}$.
+
+显然$T_0 = 0$, $T_1 = 1$, 当有$n$个盘的时候,考虑上面$n-1$个盘子从$A$移动到$C$,然后把第$n$个盘子移动到$B$,然后把之前$n-1$个盘子从$C$移动到$B$,移动的次数为:
+
+$$2T_{n-1} + 1 \label{hntTn}$$
+
+但是$T_n$表示的是最小次数,所以$T_n$应当小于等于上式的值,即
+
+$$T_{n} \le 2T_{n-1} + 1\label{hntTnle}$$
+
+显然,在把$n-1$个盘从$A$移动到$C$的过程中,任意再添加步骤,都可以使得移动步数小于式($\ref{hntTn}$),即:
+
+$$T_n \ge 2T_{n-1} + 1\label{hntTnge}$$
+
+由式($\ref{hntTnle})与式($\ref{hntTnge})可得移动的最小次数:
+
+$$T_{n} = 2T_{n-1} + 1\label{hntTneq}$$
+
+展开的$T_n$的通项为
+
+$$ T_n = 2^n - 1\label{hntTnNormalEq} $$
+
+* *限制直接从$A$移动到$C$,与$C$移动到$A$的汉诺塔问题*
+
+同样令$T_n$表示$n$个盘,从$A, C$之间,不直接通过$A \rightarrow C$,$C \rightarrow A$的最小步数.
+我们可以得出
+\begin{equation*}
+\begin{split}
+T_0 &= 0 \\
+T_1 &= 2
+\end{split}
+\end{equation*}
+
+为了方便,用$X \rightarrow Y_n$表示前$n$个盘从X柱子移动到Y柱子,$X \rightarrow Y^n$表示把第$n$个盘从$X$柱子移动到$Y$,当$n$个盘的时候,我们执行以下序列:
+\begin{equation*}
+\begin{split}
+	\begin{cases}
+		A \rightarrow B_{n-1} \\
+		B \rightarrow C_{n-1}
+	\end{cases}\\
+		A \rightarrow B^n \\
+	\begin{cases}
+		C \rightarrow B_{n-1} \\
+		B \rightarrow A_{n-1} \\
+	\end{cases}\\
+	 	B \rightarrow C^n  \\
+	\begin{cases}
+		A \rightarrow B_{n-1} \\
+		B \rightarrow C_{n-1}
+	\end{cases}
+\end{split}
+\end{equation*}
+
+其中三个大括号括起来的部分正式$T_{n-1}$,所以该限制情况下:
+
+$$ T_n = 3T_{n-1} + 2 \label{hnt2Tn} $$
+
+展开得到:
+
+$$ T_n = 3^n - 1 \label{hnt2TnEq} $$
+
+其中对于$3$为底数的解释是,分辨将三个柱子$A,B,C$看做是三个状态,每个盘都唯一一个$A \rightarrow C$,之后的移动在递归式中的体现是都作为$n-1$整体中的一部分,所以每个盘经历了$A,B,C$三个状态($A \rightarrow C$ 需要通过 $A \rightarrow B, B \rightarrow C$,所以$n$个盘在这里是$3^n$, 对已没有限制的汉诺塔移动而言,所对应的为一个$A \rightarrow C$只经过$A,C$两个状态,所以是$2^n$(每一个盘在对应的状态$A,B,C$中,实际上隐含$n-1$盘作为整体在某一个柱子上).
+
+

@@ -1,9 +1,0 @@
----
-layout : article
-title : 测试博客
-category : test
-tags : [ c, cpp, java, python ]
----
-第一段内容
-
-第二段内容

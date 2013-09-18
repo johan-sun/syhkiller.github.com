@@ -6,9 +6,18 @@
   <meta name="keywords" content="computer, blog" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+		TeX: { equationNumbers: {autoNumber: "all"} },
+		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    });
+  </script>
+  <script type="text/javascript" src="/scripts/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
 </head>
 
 <body>
+{{ page.useMathJax }}
   <div id="main">
     {% include header_inc.html %}
     <div id="site_content">
@@ -28,7 +37,7 @@
     </div>
     <div id="content_footer"></div>
     <div id="footer">
-      <p>Copyright &copy; 孙渊汇 | <a href="http://www.cssmoban.com/">模板之家</a></p>
+      <p>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> on GitHub | Copyright &copy; 孙渊汇 | Thanks to <a href="http://www.cssmoban.com/">模板之家</a></p>
     </div>
   </div>
 </body>

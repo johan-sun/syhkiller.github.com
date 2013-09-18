@@ -1,18 +1,19 @@
 <div class="sidebar">
 	<!-- insert your sidebar items here -->
-	<h3>标签</h3>
-	<p>
-	{% for tag in site.tags %}
-		<a href="/tag/{{ tag | first }}">{{ tag | first }}({{ tag | last | size }})</a>&nbsp;
-	{% endfor %}
-	</p>
 	<h3>分类</h3>
 	<ul>
 		{% for category in site.categories %}
 			<li><a href="/categories/{{ category | first }}">{{ category | first }}({{ category | last | size }})</a></li>
 		{% endfor %}
 	</ul>
-	<!--
+
+	<h3>标签</h3>
+	<p>
+	{% for tag in site.tags %}
+		<a href="/tag/{{ tag | first }}">{{ tag | first }}({{ tag | last | size }})</a>&nbsp;
+	{% endfor %}
+	</p>
+		<!--
 	<h3>Search</h3>
 	<form method="post" action="#" id="search_form">
 		<p>
