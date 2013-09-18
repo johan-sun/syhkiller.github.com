@@ -10,7 +10,7 @@ tag : 具体数学
 
 汉诺塔的问题简单描述下,有$n$个盘子,从$A$柱子移动到$B$柱子,每次一个,保证小得放在大得柱子上,$C$柱子作为辅助.求最小移动次数$T_{n}$.
 
-显然$T_0 = 0$, $T_1 = 1$, 当有$n$个盘的时候,考虑上面$n-1$个盘子从$A$移动到$C$,然后把第$n$个盘子移动到$B$,然后把之前$n-1$个盘子从$C$移动到$B$,移动的次数为:
+显然$T_0 = 0$, $T_1 = 1$, 当有$n$个盘的时候,考虑上面$n-1$个盘子从$A$移动到$C$,然后把第$n$个盘子移动到$B$,然后把之前$n-1$个盘子从$C$移动到$B$,由于对称性,将$n$个盘子从任意一个移动到另一个的次数是相同的,移动的次数为:
 
 $$2T_{n-1} + 1 \label{hntTn}$$
 
@@ -32,7 +32,7 @@ $$ T_n = 2^n - 1\label{hntTnNormalEq} $$
 
 * *限制直接从$A$移动到$C$,与$C$移动到$A$的汉诺塔问题*
 
-同样令$T_n$表示$n$个盘,从$A, C$之间,不直接通过$A \rightarrow C$,$C \rightarrow A$的最小步数.
+同样令$T_n$表示$n$个盘,从$A, C$之间,不直接通过$A \rightarrow B$,$B \rightarrow A$的最小步数.
 我们可以得出
 \begin{equation*}
 \begin{split}
@@ -45,18 +45,18 @@ T_1 &= 2
 \begin{equation*}
 \begin{split}
 	\begin{cases}
-		A \rightarrow B_{n-1} \\
-		B \rightarrow C_{n-1}
+		A \rightarrow C_{n-1} \\
+		C \rightarrow B_{n-1}
 	\end{cases}\\
-		A \rightarrow B^n \\
+		A \rightarrow C^n \\
 	\begin{cases}
-		C \rightarrow B_{n-1} \\
-		B \rightarrow A_{n-1} \\
+		B \rightarrow C_{n-1} \\
+		C \rightarrow A_{n-1} \\
 	\end{cases}\\
-	 	B \rightarrow C^n  \\
+	 	C \rightarrow B^n  \\
 	\begin{cases}
-		A \rightarrow B_{n-1} \\
-		B \rightarrow C_{n-1}
+		A \rightarrow C_{n-1} \\
+		C \rightarrow B_{n-1}
 	\end{cases}
 \end{split}
 \end{equation*}
@@ -71,4 +71,70 @@ $$ T_n = 3^n - 1 \label{hnt2TnEq} $$
 
 其中对于$3$为底数的解释是,分辨将三个柱子$A,B,C$看做是三个状态,每个盘都唯一一个$A \rightarrow C$,之后的移动在递归式中的体现是都作为$n-1$整体中的一部分,所以每个盘经历了$A,B,C$三个状态($A \rightarrow C$ 需要通过 $A \rightarrow B, B \rightarrow C$,所以$n$个盘在这里是$3^n$, 对已没有限制的汉诺塔移动而言,所对应的为一个$A \rightarrow C$只经过$A,C$两个状态,所以是$2^n$(每一个盘在对应的状态$A,B,C$中,实际上隐含$n-1$盘作为整体在某一个柱子上).
 
+* *每个大小的盘有两片*
 
+这次将汉诺塔的每个盘大小的盘设为2片,$T_n$表示$n$种大小的盘移动的做小次数,用$X \rightarrow Y_n$表示将前$n$ *种* 盘从$X$移动到$Y$, $X \rightarrow Y^n$表示将第$n$ *个*盘移动从$X$移动到$Y$,执行如下序列
+\begin{equation*}
+\begin{split}
+T_0 & = 0 \\
+T_1 & = 2
+\end{split}
+\end{equation*}
+
+当有$n$种盘的时候
+
+\begin{equation*}
+\begin{split}
+&A \rightarrow C_{n-1} \\
+&A \rightarrow B^{2n-1}\\
+&A \rightarrow B^{2n}  \\
+&C \rightarrow B_{n-1}
+\end{split}
+\end{equation*}
+
+根据对称性,将$n$种盘从任意一个柱子移动到另一个柱子的次数是相同的,所以上面的序列的此时为
+$$ T_n = 2T_{n-1} + 2 \label{hnt3Tn} $$
+
+展开即
+$$ T_n = 2 \cdot 2^{n}  - 2 $$
+
+我们用$n_i, i = 1,2$表示第$n$种盘的第$i$个盘,简单美剧可以发现
+\begin{matrix}
+\notag
+A & \rightarrow & B \\
+1_1 & & 1_1 \\ 
+1_2 & & 1_2 \\ 
+2_1 & & 2_2 \\ 
+2_2 & & 2_1 \\
+\end{matrix}
+
+最后两片盘的顺序会颠倒,而且我们很容易发现进行偶数次的移动,能够保证原有盘片的顺序,我们再次将这个不必保证顺序的最小移动次数为$Q_n$,即
+$$Q_{n} = 2 \cdot 2^{n} - 2 \label{hntQnEq}$$
+
+* 保证所有盘片顺序的最小移动次数
+
+令$T_n$表示$n$种盘片保证顺序的移动次数,当1个大小的盘的时候,使用$X \rightarrow Y^{n_i} i=1,2$表示$n_i$盘片的移动,$X \rightarrow^{nk} Y_{n}$表示前$n$种盘片的不保证顺序的移动,$X \rightarrow^k Y_{n}$表示前$n$种盘的保证顺序的移动.
+\begin{align*}
+T_0 &= 0 \\
+T_1 &= 3
+\end{align*}
+
+为了保证顺序移动n种盘,有以下序列
+
+\begin{align*}
+& A \rightarrow^{nk} B_{n-1} \\
+& A \rightarrow C^{n_1} \\
+& B \rightarrow^{nk} C_{n-1} \\
+& A \rightarrow B^{n_2} \\
+& C \rightarrow^{nk} A_{n-1}\\
+& C \rightarrow B^{n_1} \\
+& A \rightarrow^{nk} B_{n-1}
+\end{align*}
+
+其中由对称性可知$A \rightarrow^{nk} B_{n-1}$,$B \rightarrow^{nk} C_{n-1}$,$C \rightarrow^{nk} A_{n-1}$,$A \rightarrow^{nk} B_{n-1}$都是$Q_{n-1}$(式\ref{hntQnEq}),而且是偶数次的,可以保证原始顺序.这样就有
+
+$$ T_n = 4Q_{n-1} + 3 $$
+
+带入式(\ref{hntQnEq})就有
+
+$$ T_n = 2^{n+2} - 5 $$
