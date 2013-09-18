@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>孙渊汇的个人博客</title>
+  <meta name="description" content="sun yuanhui's blog" />
+  <meta name="keywords" content="computer, blog" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+		TeX: { equationNumbers: {autoNumber: "all"} },
+		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    });
+  </script>
+  <script type="text/javascript" src="/scripts/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+</head>
+
+<body>
+true
+  <div id="main">
+    <div id="header">
+	<div id="logo">
+		<div id="logo_text">
+		<!-- class="logo_colour", allows you to change the colour of the text -->
+			<h1><a href="/index.html">Sun Yuanhui's<span class="logo_colour">Blog</span></a></h1>
+			<h2>孙渊汇的个人博客</h2>
+		</div>
+	</div>
+	<div id="menubar">
+		<ul id="menu">
+			<!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+			<li class="selected"><a href="/index.html">Home</a></li>
+			<!-- <li><a href="page.html">A Page</a></li>-->
+			<li><a href="#">Contact Me</a></li>
+		</ul>
+	</div>
+</div>
+<div id="content_header"></div>
+
+    <div id="site_content">
+	  <div class="sidebar">
+	<!-- insert your sidebar items here -->
+	<h3>分类</h3>
+	<ul>
+		
+			<li><a href="/categories/数学">数学(1)</a></li>
+		
+			<li><a href="/categories/学习">学习(1)</a></li>
+		
+	</ul>
+
+	<h3>标签</h3>
+	<p>
+	
+		<a href="/tag/具体数学">具体数学(1)</a>&nbsp;
+	
+		<a href="/tag/分布式">分布式(1)</a>&nbsp;
+	
+	</p>
+		<!--
+	<h3>Search</h3>
+	<form method="post" action="#" id="search_form">
+		<p>
+			<input class="search" type="text" name="search_field" value="Enter keywords....." />
+			<input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="/styles/search.png" alt="Search" title="Search" />
+		</p>
+	</form>
+	-->
+</div>
+
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<style type="text/css">
+<!-- 
+	#content p{ text-indent: 2em;}
+ -->
+</style>
+<h1>google file system</h1>
+<p style="margin-top:-16px; text-indent:0em;">15 September 2013 | CATEGORY:<a href="/categories/学习">学习</a> | TAGS:<a href="/tag/分布式">分布式</a>&nbsp;</p>
+<p>分布式系统的目标主要是:性能(performance),可扩张性(scalability),可靠性(reliability)和可用性(availability). Google文件系统提供了在廉价硬件上运行的容错能力,与分布式系统的主要目标有着诸多共性.</p>
+<p>通过与传统的文件系统对比与反复测试.元件失效(component failure)是经常发生的,从元件的质量和数量上来讲,保证了如下的事实,有一些会在一些给定的时间内失效,而有一些则无法从错误中恢复.这样的文件系统就需要一种错误检测,自动恢复的机制,以及拥有一定的容错能力.</p>
+<p>当人们能够快速处理TB级的,即使文件系统支持处理几KB大小的文件来说,处理它们也是非常不明智的.</p>
+<p>绝大部分的文件修改都是在后面添加数据,而非重写已有数据.文件的随机访问实际上几部不存在.一单文件被写,基本上只会被读取,并且基本上都是顺序访问.由于这些特性,<strong>追加操作(append)</strong>成为了优化性能的主要对象.</p>
+<p>降低了GFS的一致性模型要求,大大简化了系统设计.</p>
+<p>为了设计google需求的文件系统,提出了许多假设</p>
+<ul>
+	<li>文件系统式在许多廉价的元件上构建,这些元件会经常失败</li>
+	<li>文件系统存储了适当数量的大文件,我们期望百万数量的文件中,都是大于等于100MB.多GB文件是常见的,并且应该当更有效的被管理.小型文件应当支持,但是不必优化</li>
+	<li>文件系统的工作负载主要在以下两种方式的访问: <strong>大量的顺序访问</strong> ,以及 <strong>少量的随机访问</strong> .
+	<ul>
+		<li>在大规模的顺序访问下,独立操作(individual operations)典型访问几百KB,更多的是1MB或者更多.小型客户端的连续的操作一般都集中在文件的一片区域(空间局部性).</li>
+		<li>在小规模的随机访问下,典型的只有访问几KB的数据.</li>
+	</ul></li>
+	<li>该系统必须有效的实现一个良好定义的语义,能够使得不同的客户端正确得向同一个文件添加数据.我们的系统经常是有一个 <strong>生产者-消费者</strong> 的列队,或者是一个 <strong>多路文件归并(many-way merge)</strong> .<br />
+成千上万的生产者在不同的机器上,将会同时向一个文件添加数据.用最小的同步开销实现追加的原子性操作非常重要,文件更新后不久之后就会被访问,或者生产者会同步读取文件内容.</li>
+	<li>高速带宽比低延迟更重要,大部分单独的读写操作都没有严格的响应时间要求</li>
+</ul>
+<p>GFS提虽然没有提供POSIX接口的API,但是还是提供了 <em>create</em> , <em>delete</em> , <em>open</em> , <em>close</em> , <em>read</em> , <em>write</em> 操作.GFS同时还提供了 <em>快照(snapshot)</em> 与 <em>记录追加(record append)</em> 操作.</p>
+<p>GFS集群主要包括一个 <strong>主(master)</strong> 服务器与多个 <strong>块服务器(chunkservers)</strong> 被多个客户端访问,用户访问主服务器获取文件的所在块,然后直接和块服务器打交道.</p>
+<p>使用单一主服务器,主服务保存了 <strong>元数据(meta data)</strong> ,元数据主要包括, <strong>文件与块的命名空间(namespace) *, *文件到块的映射</strong> , *块的位置 *,并且这些数据都是存放在主服务器的内存中.其中明明空间与文件到块的映射同时还被日志系统记录.</p>
+<p>每个块大小为64MB,服务器管理则不到64B的元数据,每个文件的命名空间在使用了 <strong>前缀压缩(prefix compression)</strong> 法之后,都通常在64B以下.</p>
+<p>主服务器并不在本地磁盘存储块的位置,每次服务器启动都向块服务器查询块的位置,并会保持一个 <strong>心跳消息(HearBeat message)</strong> ,来更新块的位置,当然当块服务器加入或者退出集群的时候,主服务器也会更新块位置.</p>
+<p>操作日志记录了重要的元数据的变化,非常重要.它不仅是元数据唯一持久化的存储记录,而且也是定义同步操作顺序的逻辑线.日志操作很重要,必须保证能够稳定的保存它们,而且只有在元数据的变化被持久保存后,才能使之对客户可见.</p>
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> on GitHub | Copyright &copy; 孙渊汇 | Thanks to <a href="http://www.cssmoban.com/">模板之家</a></p>
+    </div>
+  </div>
+</body>
+</html>
+
