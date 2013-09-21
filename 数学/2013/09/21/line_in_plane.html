@@ -71,19 +71,27 @@
       <div id="content">
         <!-- insert the page content here -->
 
-	<h1>我的博客</h1>
+	<h1>平面上的线</h1>
+<p style="margin-top:-16px; text-indent:0em;">21 September 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;</p>
+<p>用$L_n$表示$n$条直线在空间中划分的子空间个数,明显得有</p>
+<p>\begin{equation*}<br />
+\begin{split}<br />
+L_0 &amp;= 1 \\<br />
+L_1 &amp;= 2 \\<br />
+L_2 &amp;= 4<br />
+\end{split}<br />
+\end{equation*}</p>
+<p>当加入第$n$直线,最多与前$n-1$条直线产生$n-1$个交点(与它们不平行),从而产生$n$个新的空间.所以有</p>
+<p>$$ L_n = L_{n-1} + n \label{ln} $$</p>
+<p>$L_n$的闭式:</p>
+<p>$$ L_n = {n(n+1) \over 2}, n \ge 0 $$</p>
 <ul>
-
-	<li><h4><a href="/%E6%95%B0%E5%AD%A6/2013/09/21/line_in_plane.html">21 September 2013 : 平面上的线</a></h4></li>
-	<p><p>用$L_n$表示$n$条直线在空间中划分的子空间个数,明显得有</p></p>
-
-	<li><h4><a href="/%E6%95%B0%E5%AD%A6/2013/09/18/hnt.html">18 September 2013 : 汉诺塔</a></h4></li>
-	<p><p>本次主要介绍: <em>汉诺塔</em> 以及其变问题的最少移动次数解法</p></p>
-
-	<li><h4><a href="/%E5%AD%A6%E4%B9%A0/2013/09/15/gfs.html">15 September 2013 : google file system</a></h4></li>
-	<p><p>分布式系统的目标主要是:性能(performance),可扩张性(scalability),可靠性(reliability)和可用性(availability). Google文件系统提供了在廉价硬件上运行的容错能力,与分布式系统的主要目标有着诸多共性.</p></p>
-
+	<li>折现代替直线</li>
 </ul>
+<p>现将上述问题用折现代替直线,每一条直线包含一条&quot;锯齿&quot;.我们可以看到,一条折现与两条直线类似,但是在相交的定点一处少掉了两条直线,是的比两条时候损失了2个区域.可以发现为了使得划分区域最多的方法,仅仅损失两个区域,(在折线的两条射线部分尽可能全部相交,那么在人为在定点衍生涉嫌就一定相交,直线要么没有交点,要么1个交点).令$Z_n$表示$n$条折线,则<br />
+$$ Z_n = L_{2n} &#8211; 2n = {2n(2n+1) \over 2} + 1 &#8211; 2n \\<br />
+		= 2n^2 &#8211; n + 1, n \ge 0<br />
+$$</p>
 
 
       </div>

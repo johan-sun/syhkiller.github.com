@@ -14,12 +14,9 @@
     });
   </script>
   <script type='text/javascript' src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-  <!-- <script type="text/javascript" src="/scripts/MathJax.js?config=TeX-AMS_HTML"></script>-->
-
 </head>
 
 <body>
-true
   <div id="main">
     <div id="header">
 	<div id="logo">
@@ -46,7 +43,7 @@ true
 	<h3>分类</h3>
 	<ul>
 		
-			<li><a href="/categories/数学">数学(1)</a></li>
+			<li><a href="/categories/数学">数学(2)</a></li>
 		
 			<li><a href="/categories/学习">学习(1)</a></li>
 		
@@ -55,9 +52,9 @@ true
 	<h3>标签</h3>
 	<p>
 	
-		<a href="/tag/分布式">分布式(1)</a>&nbsp;
+		<a href="/tag/具体数学">具体数学(2)</a>&nbsp;
 	
-		<a href="/tag/具体数学">具体数学(1)</a>&nbsp;
+		<a href="/tag/分布式">分布式(1)</a>&nbsp;
 	
 	</p>
 		<!--
@@ -83,7 +80,7 @@ true
 <p>汉诺塔的问题简单描述下,有$n$个盘子,从$A$柱子移动到$B$柱子,每次一个,保证小得放在大得柱子上,$C$柱子作为辅助.求最小移动次数$T_{n}$.</p>
 <p>显然$T_0 = 0$, $T_1 = 1$, 当有$n$个盘的时候,考虑上面$n-1$个盘子从$A$移动到$C$,然后把第$n$个盘子移动到$B$,然后把之前$n-1$个盘子从$C$移动到$B$,由于对称性,将$n$个盘子从任意一个移动到另一个的次数是相同的,移动的次数为:</p>
 <p>$$2T_{n-1} + 1 \label{hntTn}$$</p>
-<p>但是$T_n$表示的是最小次数,所以$T_n$应当小于等于上式的值,即</p>
+<p>但是$T_n$表示的是最小次数,我们构造了一个移动,但是并没有证明他是必须的,所以有</p>
 <p>$$T_{n} \le 2T_{n-1} + 1\label{hntTnle}$$</p>
 <p>显然,在把$n-1$个盘从$A$移动到$C$的过程中,任意再添加步骤,都可以使得移动步数小于式($\ref{hntTn}$),即:</p>
 <p>$$T_n \ge 2T_{n-1} + 1\label{hntTnge}$$</p>
