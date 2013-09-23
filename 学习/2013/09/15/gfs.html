@@ -44,9 +44,9 @@
 	<h3>分类</h3>
 	<ul>
 		
-			<li><a href="/categories/数学">数学(2)</a></li>
-		
 			<li><a href="/categories/学习">学习(1)</a></li>
+		
+			<li><a href="/categories/数学">数学(2)</a></li>
 		
 	</ul>
 
@@ -98,6 +98,20 @@
 <p>每个块大小为64MB,服务器管理则不到64B的元数据,每个文件的命名空间在使用了 <strong>前缀压缩(prefix compression)</strong> 法之后,都通常在64B以下.</p>
 <p>主服务器并不在本地磁盘存储块的位置,每次服务器启动都向块服务器查询块的位置,并会保持一个 <strong>心跳消息(HearBeat message)</strong> ,来更新块的位置,当然当块服务器加入或者退出集群的时候,主服务器也会更新块位置.</p>
 <p>操作日志记录了重要的元数据的变化,非常重要.它不仅是元数据唯一持久化的存储记录,而且也是定义同步操作顺序的逻辑线.日志操作很重要,必须保证能够稳定的保存它们,而且只有在元数据的变化被持久保存后,才能使之对客户可见.</p>
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"syhkiller"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- Duoshuo Comment END -->
 
 
       </div>
