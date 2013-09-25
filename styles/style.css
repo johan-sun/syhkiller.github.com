@@ -314,21 +314,26 @@ table tr th, table tr td
   text-align: left;
   border-top:black solid 1px;
   border-left:black solid 1px;
+  background: #f6f4f0;
 }
 table tr:first-child th, table tr:first-child td
 {
-	border-top:double 2px;
+  background: #f6f4f0;
+	border-top:black double 2px;
 }
 table tr:first-child th
 {
-	border-bottom:double 2px;
+  background: #f6f4f0;
+	border-bottom:black double 2px;
 }
 table tr:last-child th, table tr:last-child td
 {
-	border-bottom:double 2px;
+  background: #f6f4f0;
+	border-bottom:black double 2px;
 }
 table tr td:first-child, table tr th:first-child
 {
+  background: #f6f4f0;
 	border-left:hidden;
 }
 #content p{ text-indent: 2em; }
