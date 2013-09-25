@@ -6,16 +6,33 @@ useMathJax : true
 <p style="margin-top:-16px; text-indent:0em;">{{ page.date | date_to_long_string }} | CATEGORY:<a href="/categories/{{ page.category }}">{{ page.category }}</a> | TAGS:{% for tag in page.tags %}<a href="/tag/{{ tag }}">{{ tag }}</a>&nbsp;{% endfor %}</p>
 {{ content }}
 <!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
+<div class="ds-thread"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"syhkiller"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = 'http://static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	|| document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<script type="text/javascript">
+(function (){
+ 	var MaxCnt = 30;
+	var i = 0;
+	var timer = setInterval(function(){
+			++i;
+			if(i >= MaxCnt){ clearInterval(timer); return;}
+			if(MathJax.Hub.Queue){
+				if(document.getElementsByClassName('ds-powered-by').length){
+					MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('ds-thread')]);
+					clearInterval(timer);
+					return;
+				}
+			}
+		},1000);
+ })();
 </script>
 <!-- Duoshuo Comment END -->
