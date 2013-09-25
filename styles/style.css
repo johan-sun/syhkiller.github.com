@@ -311,20 +311,20 @@ table tr th, table tr td
 {
   padding: 7px 4px;
   text-align: left;
-  border-top:solid 1px #000;
-  border-left:solid 1px #000;
+  border-top:solid 1px;
+  border-left:solid 1px;
 }
 table tr:first-child th, table tr:first-child td
 {
-	border-top:double 2px #000;
+	border-top:double 2px;
 }
 table tr:first-child th
 {
-	border-bottom:double 2px #000;
+	border-bottom:double 2px;
 }
 table tr:last-child th, table tr:last-child td
 {
-	border-bottom:double 2px #000;
+	border-bottom:double 2px;
 }
 table tr td:first-child, table tr th:first-child
 {
