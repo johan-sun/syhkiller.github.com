@@ -306,13 +306,14 @@ table
 { 
 	border-collapse:collapse;
 	margin:0px auto 15px auto;
+	background: #f6f4f0;
 }
 table tr th, table tr td
 {
   padding: 7px 4px;
   text-align: left;
-  border-top:solid 1px;
-  border-left:solid 1px;
+  border-top:black solid 1px;
+  border-left:black solid 1px;
 }
 table tr:first-child th, table tr:first-child td
 {
