@@ -330,6 +330,7 @@ table tr td:first-child, table tr th:first-child
 {
 	border-left:hidden;
 }
+
 #content p{ text-indent: 2em; }
 .post a, .post a:hover
 { border-bottom: 1px dotted;
@@ -342,4 +343,8 @@ table tr td:first-child, table tr th:first-child
 
 .jiathis_style{
 float:right;
+}
+
+.jiathis_style table tr td{
+border:none;
 }
