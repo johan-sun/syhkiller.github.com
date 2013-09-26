@@ -4,7 +4,7 @@ title : 本地公式渲染MathJax
 category : 前端
 tag : js
 ---
-"MathJax":http://mathjax.org 是javascript写的一个渲染$\Tex$公式的引擎,有了MathJax就能很方便的在博客中写数学公式, 整个工具可以从 "MathJax的官网":http://mathjax.org 下载,也提供了cdn的方式.
+"MathJax":http://mathjax.org 是javascript写的一个渲染$\TeX$公式的引擎,有了MathJax就能很方便的在博客中写数学公式, 整个工具可以从 "MathJax的官网":http://mathjax.org 下载,也提供了cdn的方式.
 
 h4. 配置MathJax
 * 配置行内,行间显示模式
