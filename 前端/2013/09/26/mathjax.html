@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>孙渊汇的个人博客</title>
+  <meta name="description" content="sun yuanhui's blog" />
+  <meta name="keywords" content="computer, blog" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+  <link rel="stylesheet" type="text/css" href="/styles/fruity.css"/>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+		TeX: { equationNumbers: {autoNumber: "all"} },
+		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    });
+  </script>
+<script type='text/javascript' src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+	<div id="logo">
+		<div id="logo_text">
+		<!-- class="logo_colour", allows you to change the colour of the text -->
+			<h1><a href="/index.html">Sun Yuanhui's<span class="logo_colour">Blog</span></a></h1>
+			<h2>孙渊汇的个人博客</h2>
+		</div>
+	</div>
+	<div id="menubar">
+		<ul id="menu">
+			<!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+			<li class="selected"><a href="/index.html">Home</a></li>
+			<!-- <li><a href="page.html">A Page</a></li>-->
+			<li><a href="#">Contact Me</a></li>
+		</ul>
+	</div>
+</div>
+<div id="content_header"></div>
+
+    <div id="site_content">
+	  <div class="sidebar">
+	<!-- insert your sidebar items here -->
+	<h3>分类</h3>
+	<ul>
+		
+			<li><a href="/categories/前端">前端(1)</a></li>
+		
+			<li><a href="/categories/数学">数学(2)</a></li>
+		
+			<li><a href="/categories/学习">学习(1)</a></li>
+		
+	</ul>
+
+	<h3>标签</h3>
+	<p>
+	
+		<a href="/tag/具体数学">具体数学(2)</a>&nbsp;
+	
+		<a href="/tag/分布式">分布式(1)</a>&nbsp;
+	
+		<a href="/tag/js">js(1)</a>&nbsp;
+	
+	</p>
+		<!--
+	<h3>Search</h3>
+	<form method="post" action="#" id="search_form">
+		<p>
+			<input class="search" type="text" name="search_field" value="Enter keywords....." />
+			<input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="/styles/search.png" alt="Search" title="Search" />
+		</p>
+	</form>
+	-->
+</div>
+
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<h1>本地公式渲染MathJax</h1>
+<p style="margin-top:-16px; text-indent:0em;">26 September 2013 | CATEGORY:<a href="/categories/前端">前端</a> | TAGS:<a href="/tag/js">js</a>&nbsp;</p>
+<p><a href="http://mathjax.org">MathJax</a> 是javascript写的一个渲染$\Tex$公式的引擎,有了MathJax就能很方便的在博客中写数学公式, 整个工具可以从 <a href="http://mathjax.org">MathJax的官网</a> 下载,也提供了cdn的方式.</p>
+<h4>配置MathJax</h4>
+<ul>
+	<li>配置行内,行间显示模式<br />
+mathjax 使用Json方式配置行内行间模式,所谓行内,行间模式是指除了 <code>\begin{equation} \end{equation}</code> 等模式,mathjax还支持自定义的行内行间模式,也就是说在指定模式内,才会被渲染,默认matjax会使用 <code>$${}$$</code> 渲染行间公式,等价于 <code>\begin{equation} \end{equation}</code> , 可以使用displayMath指定模式,我采用了如下配置,其中 <code>equationNumbers:{autoNumber:"all"}</code> 是为了产生标签,用于引用, 详细可以查看 <a href="http://docs.mathjax.org/en/latest/configuration.html#using-in-line-configuration-options">这里</a><br />
+<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">2</span> <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+<span class="lineno">3</span> 	<span class="nx">TeX</span><span class="o">:</span> <span class="p">{</span> <span class="nx">equationNumbers</span><span class="o">:</span> <span class="p">{</span><span class="nx">autoNumber</span><span class="o">:</span> <span class="s2">&quot;all&quot;</span><span class="p">}</span> <span class="p">},</span>
+<span class="lineno">4</span> 	<span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span><span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[[</span><span class="s2">&quot;$&quot;</span><span class="p">,</span><span class="s2">&quot;$&quot;</span><span class="p">],[</span><span class="s2">&quot;\\(&quot;</span><span class="p">,</span><span class="s2">&quot;\\)&quot;</span><span class="p">]]},</span>
+<span class="lineno">5</span> <span class="p">});</span>
+<span class="lineno">6</span> <span class="nt">&lt;/script&gt;</span>
+</code></pre></div></li>
+</ul>
+<ul>
+	<li>加载MathJax<br />
+<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span>
+<span class="lineno">2</span>    <span class="na">src=</span><span class="s">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">3</span> <span class="nt">&lt;/script&gt;</span>
+</code></pre></div><br />
+我采用了CDN的方式加载MathJax引擎, config可以获取特定的配置,配置选项有
+	<ul>
+		<li>defualt</li>
+		<li>TeX-<span class="caps">AMS</span>-MML_HTMLorMML</li>
+		<li>TeX-AMS_HTML</li>
+		<li>MML_HTMLorMML</li>
+		<li>AM_HTMLorMML</li>
+		<li>TeX-<span class="caps">AMS</span>-MML_SVG</li>
+		<li>TeX-<span class="caps">MML</span>-AM_HTMLorMML<br />
+具体的可以查看 <a href="http://docs.mathjax.org/en/latest/configuration.html#using-a-configuration-file">这里</a></li>
+	</ul></li>
+</ul>
+<h4>回调函数</h4>
+<p>我的博客使用了 <a href="http://duoshuo.com">多说</a> 作为社会化评论,本以为MathJax可以正确渲染评论里面的公式,但是我发现,多说评论加载是异步的,MathJax渲染也是异步的,也就说,简单的方式下可能多说的评论内容还没加载,MathJax的渲染工作就已经完成,这样评论里面的公式都没法渲染了.</p>
+<p>我先是找多说的api,看看能不能注册一个毁掉函数,在多说加载完毕之后再加载MathJax引擎,但是不行,首先多说文档的api都是关于服务器的api,并没有涉及太多的js api,而且万一网络不好,多说加载很慢,岂不是文章就没法渲染了. 那么就要针对多说加载的内容进行再次渲染,或者说排版.</p>
+<p>找了许久,终于在example的sample-dynamic-2.html中找到了可能用到的函数 <code>Typeset</code> 和 <code>Queue</code> , 找到 <a href="http://docs.mathjax.org/en/latest/api/index.html">官方文档</a> , <a href="http://docs.mathjax.org/en/latest/api/hub.html#Typeset">MathJax.Hub.Typeset</a> 可以用于排版给定的html对象内的内容,正式我需要的, 还有一个就是 <a href="http://docs.mathjax.org/en/latest/api/hub.html#methods">MathJax.Hub.Queue</a></p>
+<p><code>MathJax.Hub.Queue</code> 这个函数执行后会返回一个队列,js执行都是异步的,但是有了这个队列就可以模拟出同步的执行,而且MathJax自己的渲染过程也是通过这个进行流程控制,也就是我们的callback一定会在MathJax引擎的渲染工作完成后执行.</p>
+<p>好吧,那么就可以自己动手了,首先依然是全局的渲染工作,然后我加了一个定时器,每秒进行一次轮询,查看 <code>class="ds-powered-by"</code> 对象有没有出现(多说加载的评论栏最后一个,我就用这个笨办法判断多说有没有加载完毕), 出现了将整个多说评论栏重新排版, 当然其中也进行了最大轮询的限制,以免在网络不好的情况下浪费游览器资源,代码如下:<br />
+<div class="highlight"><pre><code class="html"><span class="lineno"> 1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="lineno"> 2</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
+<span class="lineno"> 3</span>  	<span class="kd">var</span> <span class="nx">MaxCnt</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="lineno"> 4</span> 	<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span> 	<span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="lineno"> 6</span> 			<span class="o">++</span><span class="nx">i</span><span class="p">;</span>
+<span class="lineno"> 7</span> 			<span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">MaxCnt</span><span class="p">){</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span> <span class="k">return</span><span class="p">;}</span>
+<span class="lineno"> 8</span> 			<span class="k">if</span><span class="p">(</span><span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">){</span>
+<span class="lineno"> 9</span> 				<span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;ds-powered-by&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">){</span>
+<span class="lineno">10</span> 					<span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">([</span><span class="s2">&quot;Typeset&quot;</span><span class="p">,</span> <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;ds-thread&#39;</span><span class="p">)]);</span>
+<span class="lineno">11</span> 					<span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+<span class="lineno">12</span> 					<span class="k">return</span><span class="p">;</span>
+<span class="lineno">13</span> 				<span class="p">}</span>
+<span class="lineno">14</span> 			<span class="p">}</span>
+<span class="lineno">15</span> 		<span class="p">},</span><span class="mi">1000</span><span class="p">);</span>
+<span class="lineno">16</span>  <span class="p">})();</span>
+<span class="lineno">17</span> <span class="nt">&lt;/script&gt;</span>
+</code></pre></div></p>
+<p>当然如果不希望某个标签被渲染,只要加上 <code>class="tex2jax_ignore"</code> 即可让其忽略渲染.</p>
+<p><strong><em>最后,如果有人知道如何再多说评论加载完毕之后执行指定的回到函数,可以在评论告诉我,万分感谢!</em></strong></p>
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"syhkiller"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- Duoshuo Comment END -->
+<script type="text/javascript">
+(function (){
+ 	var MaxCnt = 30;
+	var i = 0;
+	var timer = setInterval(function(){
+			++i;
+			if(i >= MaxCnt){ clearInterval(timer); return;}
+			if(MathJax.Hub.Queue){
+				if(document.getElementsByClassName('ds-powered-by').length){
+					MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('ds-thread')]);
+					clearInterval(timer);
+					return;
+				}
+			}
+		},1000);
+ })();
+</script>
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> on GitHub | Copyright &copy; 孙渊汇 | Thanks to <a href="http://www.cssmoban.com/">模板之家</a></p>
+    </div>
+  </div>
+</body>
+</html>
+
