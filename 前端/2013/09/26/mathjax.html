@@ -7,11 +7,20 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" type="text/css" href="/styles/style.css" />
-  <link rel="stylesheet" type="text/css" href="/styles/fruity.css"/>
+  <link rel="stylesheet" type="text/css" href="/styles/highlight.css"/>
+  <script type="text/javascript" src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
 		TeX: { equationNumbers: {autoNumber: "all"} },
 		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    });
+    $(function(){
+            $(".highlight").each(function(idx, obj){  
+                var linenos = $(obj).find(".lineno"); 
+                linenos.remove(); 
+                if(linenos.length)
+                    $(this).prepend($("<div class='linenoWrapper'></div>").append(linenos));
+             });
     });
   </script>
 <script type='text/javascript' src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -46,9 +55,9 @@
 		
 			<li><a href="/categories/前端">前端(1)</a></li>
 		
-			<li><a href="/categories/数学">数学(2)</a></li>
-		
 			<li><a href="/categories/学习">学习(1)</a></li>
+		
+			<li><a href="/categories/数学">数学(2)</a></li>
 		
 	</ul>
 
@@ -86,8 +95,8 @@
 mathjax 使用Json方式配置行内行间模式,所谓行内,行间模式是指除了 <code>\begin{equation} \end{equation}</code> 等模式,mathjax还支持自定义的行内行间模式,也就是说在指定模式内,才会被渲染,默认matjax会使用 <code>$${}$$</code> 渲染行间公式,等价于 <code>\begin{equation} \end{equation}</code> , 可以使用displayMath指定模式,我采用了如下配置,其中 <code>equationNumbers:{autoNumber:"all"}</code> 是为了产生标签,用于引用, 详细可以查看 <a href="http://docs.mathjax.org/en/latest/configuration.html#using-in-line-configuration-options">这里</a><br />
 <div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
 <span class="lineno">2</span> <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
-<span class="lineno">3</span> 	<span class="nx">TeX</span><span class="o">:</span> <span class="p">{</span> <span class="nx">equationNumbers</span><span class="o">:</span> <span class="p">{</span><span class="nx">autoNumber</span><span class="o">:</span> <span class="s2">&quot;all&quot;</span><span class="p">}</span> <span class="p">},</span>
-<span class="lineno">4</span> 	<span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span><span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[[</span><span class="s2">&quot;$&quot;</span><span class="p">,</span><span class="s2">&quot;$&quot;</span><span class="p">],[</span><span class="s2">&quot;\\(&quot;</span><span class="p">,</span><span class="s2">&quot;\\)&quot;</span><span class="p">]]},</span>
+<span class="lineno">3</span>     <span class="nx">TeX</span><span class="o">:</span> <span class="p">{</span> <span class="nx">equationNumbers</span><span class="o">:</span> <span class="p">{</span><span class="nx">autoNumber</span><span class="o">:</span> <span class="s2">&quot;all&quot;</span><span class="p">}</span> <span class="p">},</span>
+<span class="lineno">4</span>     <span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span><span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[[</span><span class="s2">&quot;$&quot;</span><span class="p">,</span><span class="s2">&quot;$&quot;</span><span class="p">],[</span><span class="s2">&quot;\\(&quot;</span><span class="p">,</span><span class="s2">&quot;\\)&quot;</span><span class="p">]]},</span>
 <span class="lineno">5</span> <span class="p">});</span>
 <span class="lineno">6</span> <span class="nt">&lt;/script&gt;</span>
 </code></pre></div></li>
@@ -95,7 +104,7 @@ mathjax 使用Json方式配置行内行间模式,所谓行内,行间模式是指
 <ul>
 	<li>加载MathJax<br />
 <div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span>
-<span class="lineno">2</span>    <span class="na">src=</span><span class="s">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">2</span>     <span class="na">src=</span><span class="s">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span><span class="nt">&gt;</span>
 <span class="lineno">3</span> <span class="nt">&lt;/script&gt;</span>
 </code></pre></div><br />
 我采用了CDN的方式加载MathJax引擎, config可以获取特定的配置,配置选项有
@@ -118,19 +127,19 @@ mathjax 使用Json方式配置行内行间模式,所谓行内,行间模式是指
 <p>好吧,那么就可以自己动手了,首先依然是全局的渲染工作,然后我加了一个定时器,每秒进行一次轮询,查看 <code>class="ds-powered-by"</code> 对象有没有出现(多说加载的评论栏最后一个,我就用这个笨办法判断多说有没有加载完毕), 出现了将整个多说评论栏重新排版, 当然其中也进行了最大轮询的限制,以免在网络不好的情况下浪费游览器资源,代码如下:<br />
 <div class="highlight"><pre><code class="html"><span class="lineno"> 1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
 <span class="lineno"> 2</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
-<span class="lineno"> 3</span>  	<span class="kd">var</span> <span class="nx">MaxCnt</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
-<span class="lineno"> 4</span> 	<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno"> 5</span> 	<span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-<span class="lineno"> 6</span> 			<span class="o">++</span><span class="nx">i</span><span class="p">;</span>
-<span class="lineno"> 7</span> 			<span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">MaxCnt</span><span class="p">){</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span> <span class="k">return</span><span class="p">;}</span>
-<span class="lineno"> 8</span> 			<span class="k">if</span><span class="p">(</span><span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">){</span>
-<span class="lineno"> 9</span> 				<span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;ds-powered-by&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">){</span>
-<span class="lineno">10</span> 					<span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">([</span><span class="s2">&quot;Typeset&quot;</span><span class="p">,</span> <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;ds-thread&#39;</span><span class="p">)]);</span>
-<span class="lineno">11</span> 					<span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-<span class="lineno">12</span> 					<span class="k">return</span><span class="p">;</span>
-<span class="lineno">13</span> 				<span class="p">}</span>
-<span class="lineno">14</span> 			<span class="p">}</span>
-<span class="lineno">15</span> 		<span class="p">},</span><span class="mi">1000</span><span class="p">);</span>
+<span class="lineno"> 3</span>     <span class="kd">var</span> <span class="nx">MaxCnt</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="lineno"> 4</span>     <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span>     <span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="lineno"> 6</span>         <span class="o">++</span><span class="nx">i</span><span class="p">;</span>
+<span class="lineno"> 7</span>         <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">MaxCnt</span><span class="p">){</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span> <span class="k">return</span><span class="p">;}</span>
+<span class="lineno"> 8</span>         <span class="k">if</span><span class="p">(</span><span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">){</span>
+<span class="lineno"> 9</span>             <span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;ds-powered-by&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">){</span>
+<span class="lineno">10</span>                 <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">([</span><span class="s2">&quot;Typeset&quot;</span><span class="p">,</span> <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;ds-thread&#39;</span><span class="p">)]);</span>
+<span class="lineno">11</span>                 <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+<span class="lineno">12</span>                 <span class="k">return</span><span class="p">;</span>
+<span class="lineno">13</span>             <span class="p">}</span>
+<span class="lineno">14</span>        <span class="p">}</span>
+<span class="lineno">15</span>      <span class="p">},</span><span class="mi">1000</span><span class="p">);</span>
 <span class="lineno">16</span>  <span class="p">})();</span>
 <span class="lineno">17</span> <span class="nt">&lt;/script&gt;</span>
 </code></pre></div></p>

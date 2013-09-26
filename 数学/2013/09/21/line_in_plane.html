@@ -7,11 +7,20 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" type="text/css" href="/styles/style.css" />
-  <link rel="stylesheet" type="text/css" href="/styles/fruity.css"/>
+  <link rel="stylesheet" type="text/css" href="/styles/highlight.css"/>
+  <script type="text/javascript" src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
 		TeX: { equationNumbers: {autoNumber: "all"} },
 		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    });
+    $(function(){
+            $(".highlight").each(function(idx, obj){  
+                var linenos = $(obj).find(".lineno"); 
+                linenos.remove(); 
+                if(linenos.length)
+                    $(this).prepend($("<div class='linenoWrapper'></div>").append(linenos));
+             });
     });
   </script>
 <script type='text/javascript' src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -46,9 +55,9 @@
 		
 			<li><a href="/categories/前端">前端(1)</a></li>
 		
-			<li><a href="/categories/数学">数学(2)</a></li>
-		
 			<li><a href="/categories/学习">学习(1)</a></li>
+		
+			<li><a href="/categories/数学">数学(2)</a></li>
 		
 	</ul>
 
