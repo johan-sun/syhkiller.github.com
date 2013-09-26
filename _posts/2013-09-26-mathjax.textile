@@ -25,7 +25,7 @@ MathJax.Hub.Config({
 </script>
 {% endhighlight %}
 我采用了CDN的方式加载MathJax引擎, config可以获取特定的配置,配置选项有
-** defualt
+** default
 ** TeX-AMS-MML_HTMLorMML
 ** TeX-AMS_HTML
 ** MML_HTMLorMML
@@ -67,4 +67,4 @@ h4. 回调函数
 
 当然如果不希望某个标签被渲染,只要加上 @class="tex2jax_ignore"@ 即可让其忽略渲染.
 
-*_最后,如果有人知道如何再多说评论加载完毕之后执行指定的回到函数,可以在评论告诉我,万分感谢!_*
+*_最后,如果有人知道如何在多说评论加载完毕之后执行指定的回调函数,可以在评论告诉我,万分感谢!_*
