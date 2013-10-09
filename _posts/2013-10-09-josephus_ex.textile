@@ -1,0 +1,8 @@
+---
+layout : article
+title : 约瑟夫问题扩展
+category : 数学
+tag :
+    - 具体数学
+    - 约瑟夫
+---
