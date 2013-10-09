@@ -19,7 +19,7 @@
                 var linenos = $(obj).find(".lineno"); 
                 linenos.remove(); 
                 if(linenos.length)
-                    $(this).prepend($("<div class='linenoWrapper'></div>").append(linenos));
+                   $(this).prepend($("<div class='linenoWrapper'></div>").append(linenos));
              });
     });
   </script>
@@ -53,22 +53,28 @@
 	<h3>分类</h3>
 	<ul>
 		
-			<li><a href="/categories/前端">前端(1)</a></li>
+			<li><a href="/categories/数学">数学(3)</a></li>
+		
+			<li><a href="/categories/前端">前端(2)</a></li>
 		
 			<li><a href="/categories/学习">学习(1)</a></li>
-		
-			<li><a href="/categories/数学">数学(2)</a></li>
 		
 	</ul>
 
 	<h3>标签</h3>
-	<p>
+	<p class="taglist">
 	
-		<a href="/tag/js">js(1)</a>&nbsp;
+		<a href="/tag/约瑟夫">约瑟夫(1)</a>
 	
-		<a href="/tag/分布式">分布式(1)</a>&nbsp;
+		<a href="/tag/分布式">分布式(1)</a>
 	
-		<a href="/tag/具体数学">具体数学(2)</a>&nbsp;
+		<a href="/tag/textile">textile(1)</a>
+	
+		<a href="/tag/js">js(1)</a>
+	
+		<a href="/tag/mathjax">mathjax(1)</a>
+	
+		<a href="/tag/具体数学">具体数学(3)</a>
 	
 	</p>
 		<!--
@@ -87,6 +93,12 @@
 
 	<h1>我的博客</h1>
 <ul>
+
+	<li><h4><a href="/%E6%95%B0%E5%AD%A6/2013/09/27/josephus.html">27 September 2013 : 约瑟夫问题</a></h4></li>
+	<p>约瑟夫问题已经很常见了,是由历史学家夫拉维.约瑟夫命名的古老问题,大致是有许多人围成圈,顺时针数数,逢三就自杀,最后剩下两个人得救,约瑟夫和他的小伙伴不想无谓自杀,于是迅速计算出他们应该待的位子.</p>
+
+	<li><h4><a href="/%E5%89%8D%E7%AB%AF/2013/09/27/fixmathjaxand.html">27 September 2013 : 解决MathJax与textile冲突</a></h4></li>
+	<p>因为要写公式,所以整了个MathJax, 开始使用Markdown, 结果发现太多地方需要转义, 比例公式中需要用@\\<code>的地方写的时候要</code>\\\\@, * 的地方需要\ * , 表示下标的 _ 需要\ _ ,后来就换成textile了,textile 总体不错, * _ 等标记是按照分词来划分的,所以紧跟着写 * _ 都不要紧.</p>
 
 	<li><h4><a href="/%E5%89%8D%E7%AB%AF/2013/09/26/mathjax.html">26 September 2013 : 本地公式渲染MathJax</a></h4></li>
 	<p><a href="http://mathjax.org">MathJax</a> 是javascript写的一个渲染$\TeX$公式的引擎,有了MathJax就能很方便的在博客中写数学公式, 整个工具可以从 <a href="http://mathjax.org">MathJax的官网</a> 下载,也提供了cdn的方式.</p>

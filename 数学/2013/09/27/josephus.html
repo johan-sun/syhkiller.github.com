@@ -91,28 +91,71 @@
       <div id="content">
         <!-- insert the page content here -->
 
-	<h1>平面上的线</h1>
-<p style="margin-top:-16px; text-indent:0em;">21 September 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;</p>
+	<h1>约瑟夫问题</h1>
+<p style="margin-top:-16px; text-indent:0em;">27 September 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;<a href="/tag/约瑟夫">约瑟夫</a>&nbsp;</p>
 <div class="post">
-<p>用$L_n$表示$n$条直线在空间中划分的子空间个数,明显得有</p>
-<p>\begin{equation*}<br />
-\begin{split}<br />
-L_0 &amp;= 1 \\<br />
-L_1 &amp;= 2 \\<br />
-L_2 &amp;= 4<br />
-\end{split}<br />
-\end{equation*}</p>
-<p>当加入第$n$直线,最多与前$n-1$条直线产生$n-1$个交点(与它们不平行),从而产生$n$个新的空间.所以有</p>
-<p>$$ L_n = L_{n-1} + n \label{ln} $$</p>
-<p>$L_n$的闭式:</p>
-<p>$$ L_n = {n(n+1) \over 2}, n \ge 0 $$</p>
+<p>约瑟夫问题已经很常见了,是由历史学家夫拉维.约瑟夫命名的古老问题,大致是有许多人围成圈,顺时针数数,逢三就自杀,最后剩下两个人得救,约瑟夫和他的小伙伴不想无谓自杀,于是迅速计算出他们应该待的位子.</p>
+<p>现在我们将这个问题稍微变化下,从围成圈的$n$个人开始数数,每隔一个就删去一个人,知道只有一个人幸存下来,$n = 10$的情况下,依次删去$2,4,6,8,10,3,5,7,1,9$,最后剩下原来的$5$号.记$J(n)$表示$n$个人能够幸存的原始编号,有$J(10) = 5$.</p>
+<p>考虑$2n$个人<br />
+$$1, 2, 3, 4, 5, 6 &#8230; 2n \notag$$</p>
+<p>经过一轮后存活$n$个人:<br />
+$$1, 3, 5 &#8230; 2n-1\notag$$</p>
+<p>也就是说:<br />
+$$J(2n) = 2J(n) &#8211; 1 \notag$$</p>
+<p>现在考虑$2n+1$的情况:<br />
+$$1, 2, 3, 4, 5, 6 &#8230; 2n+1 \notag$$</p>
+<p>经过一轮后还有n+1个人,为了方便,我们再把原来的1号杀掉:<br />
+$$3, 5, 7, 9&#8230; 2n+1 \notag$$</p>
+<p>可以发现:<br />
+$$J(2n+1) = 2J(n) + 1 \notag$$</p>
+<p>我们有:<br />
+\begin{equation}<br />
+\begin{cases}<br />
+J(1) &amp;= 1\\<br />
+J(2n)&amp;= 2J(n) &#8211; 1 ,n \ge 1 \\<br />
+J(2n+1) &amp;= 2J(n) + 1 ,n \ge 1 <br />
+\end{cases}<br />
+\end{equation}</p>
+<p>我们给出相关的值(#仅仅是为了补全空格):</p>
+<table>
+	<tr>
+		<td> $n$  </td>
+		<td> 1 </td>
+		<td colspan="2">2  3 </td>
+		<td colspan="4">4  5  6  7 </td>
+		<td colspan="8">8  9  10  11  12  13  14  15 </td>
+		<td> 16 </td>
+	</tr>
+	<tr>
+		<td>$J(n)$</td>
+		<td> 1 </td>
+		<td colspan="2">1  3 </td>
+		<td colspan="4">1  3  5  7 </td>
+		<td colspan="8">1  3  #5  #7  #9  11  13  15 </td>
+		<td> #1 </td>
+	</tr>
+</table>
+<p>我们可以看出,将$n$写成$2^m+l$的形式, $J(n) = J(2^m+l) = 2l + 1$</p>
+<p>使用数学归纳法证明其正确性.</p>
+<p>当$n=2$时, $J(2) = 2J(1) &#8211; 1 = 1$成立, 设$n \lt 2^m + 1$是成立</p>
 <ul>
-	<li>折现代替直线</li>
+	<li>$2^m+l$ 为偶数时</li>
 </ul>
-<p>现将上述问题用折现代替直线,每一条直线包含一条&quot;锯齿&quot;.我们可以看到,一条折现与两条直线类似,但是在相交的定点一处少掉了两条直线,是的比两条时候损失了2个区域.可以发现为了使得划分区域最多的方法,仅仅损失两个区域,(在折线的两条射线部分尽可能全部相交,那么在人为在定点衍生涉嫌就一定相交,直线要么没有交点,要么1个交点).令$Z_n$表示$n$条折线,则<br />
-$$ Z_n = L_{2n} &#8211; 2n = {2n(2n+1) \over 2} + 1 &#8211; 2n \\<br />
-		= 2n^2 &#8211; n + 1, n \ge 0<br />
-$$</p>
+<p>显然$l$为偶数, $J(2^m+l) = 2J(2^{m-1} + { l \over 2}) &#8211; 1 = 2(2 \cdot {l \over 2} + 1) &#8211; 1 = 2l + 1$ 成立.</p>
+<ul>
+	<li>$2^m+l$ 为奇数</li>
+</ul>
+<p>显然$l$为奇数, $J(2^m+l) = J(2^m + l &#8211; 1 + 1) = 2J(2^{m-1} + {l &#8211; 1 \over 2 } + 1) = 2(2\cdot { l &#8211; 1 \over 2} + 1) + 1 = 2l + 1$ 成立.</p>
+<p>令$n=\left(b_mb_{m-1}\cdots b_1b_0\right)_ 2$ 那么$l=\left(0b_{m-1}\cdots b_1b_0\right)_ 2$</p>
+<p>\begin{equation}<br />
+\begin{split}<br />
+    J(\left(b_mb_{m-1}\cdots b_2b_0\right)_ 2) &amp;= 2\left(0b_{m-1}\cdots b_1b_0\right)_ 2 + 1\\<br />
+            &amp;= \left(0b_{m-1}\cdots b_1b_0\right)_ 2 \ll 1 + 1 \\<br />
+            &amp;= \left(b_{m-1}\cdots b_1b_01\right)_ 2 \\<br />
+            &amp;= \left(b_{m-1}\cdots b_1b_0b_m\right)_2<br />
+\end{split}<br />
+\end{equation}</p>
+<p>这样我们就有快速求一个整数$n$,隔一个杀人的约瑟夫环问题,只要对其做一次二进制下的循环左移就可以了.</p>
 </div>
 
 <!-- JiaThis Button BEGIN -->

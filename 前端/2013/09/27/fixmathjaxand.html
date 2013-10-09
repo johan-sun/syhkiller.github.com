@@ -91,16 +91,77 @@
       <div id="content">
         <!-- insert the page content here -->
 
-	<h1>当前标签:js</h1>
-	<ul>
+	<h1>解决MathJax与textile冲突</h1>
+<p style="margin-top:-16px; text-indent:0em;">27 September 2013 | CATEGORY:<a href="/categories/前端">前端</a> | TAGS:<a href="/tag/textile">textile</a>&nbsp;<a href="/tag/mathjax">mathjax</a>&nbsp;</p>
+<div class="post">
+<p>因为要写公式,所以整了个MathJax, 开始使用Markdown, 结果发现太多地方需要转义, 比例公式中需要用@\\<code>的地方写的时候要</code>\\\\@, * 的地方需要\ * , 表示下标的 _ 需要\ _ ,后来就换成textile了,textile 总体不错, * _ 等标记是按照分词来划分的,所以紧跟着写 * _ 都不要紧.</p>
+<p>但是还是发现有问题的地方,比如如下$\TeX$ <code>J(\left(b_mb_{m-1}\cdots b_2b_0\right)_2) &amp;= 2\left(0b_{m-1}\cdots b_1b_0\right)_2 + 1</code>, 由于部分_会被替换成i标签,导致MathJax渲染失败,所以比较纠结.</p>
+<p>研究了下,textile文字修饰的标记是更具分词来决定的, 必须是两个_之间内容,拿掉_后可以被分词, 所以英文原本就是按照空格分词,中文需要加空格分词, 但是如果_前面是标点符号,那么也可以被分词的,如下的都可以被修饰</p>
+<blockquote>
+<p>文字 _强调_<br />
+文字,_强调_<br />
+文字)_强调_</p>
+</blockquote>
+<p>修饰后</p>
+<blockquote>
+<p>文字 <em>强调</em><br />
+文字,<em>强调</em><br />
+文字)<em>强调</em></p>
+</blockquote>
+<p>但是再仔细一研究,发现第一个_后面需要紧跟内容,不能有空白,所以为了防止意外被解析导致MathJax渲染失败,可以按照凡是写下标发现前面不是一个字母,是)}等,写_后空一格,然后在写下标的内容<br />
+如下不会被修饰</p>
+<blockquote>
+<p>文字 _ 强调_<br />
+文字,_ 强调_<br />
+文字)_ 强调_</p>
+</blockquote>
+</div>
 
-		<li><h4><a href="/%E5%89%8D%E7%AB%AF/2013/09/26/mathjax.html">26 September 2013 : 本地公式渲染MathJax</a></h4></li>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_douban"></a>
+	<a class="jiathis_button_fb"></a>
+	<a class="jiathis_button_twitter"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1377138298698457" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-
-		<p><a href="http://mathjax.org">MathJax</a> 是javascript写的一个渲染$\TeX$公式的引擎,有了MathJax就能很方便的在博客中写数学公式, 整个工具可以从 <a href="http://mathjax.org">MathJax的官网</a> 下载,也提供了cdn的方式.</p>
-
-
-</ul>
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"syhkiller"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- Duoshuo Comment END -->
+<script type="text/javascript">
+(function (){
+ 	var MaxCnt = 30;
+	var i = 0;
+	var timer = setInterval(function(){
+			++i;
+			if(i >= MaxCnt){ clearInterval(timer); return;}
+			if(MathJax.Hub.Queue){
+				if(document.getElementsByClassName('ds-powered-by').length){
+					MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('ds-thread')]);
+					clearInterval(timer);
+					return;
+				}
+			}
+		},1000);
+ })();
+</script>
 
 
       </div>
