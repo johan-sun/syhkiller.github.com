@@ -8,9 +8,9 @@
 	</ul>
 
 	<h3>标签</h3>
-	<p>
+	<p class="taglist">
 	{% for tag in site.tags %}
-		<a href="/tag/{{ tag | first }}">{{ tag | first }}({{ tag | last | size }})</a>&nbsp;
+		<a href="/tag/{{ tag | first }}">{{ tag | first }}({{ tag | last | size }})</a>
 	{% endfor %}
 	</p>
 		<!--
