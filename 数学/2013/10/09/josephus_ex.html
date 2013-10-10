@@ -91,71 +91,143 @@
       <div id="content">
         <!-- insert the page content here -->
 
-	<h1>约瑟夫问题</h1>
-<p style="margin-top:-16px; text-indent:0em;">27 September 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;<a href="/tag/约瑟夫">约瑟夫</a>&nbsp;</p>
+	<h1>约瑟夫问题扩展</h1>
+<p style="margin-top:-16px; text-indent:0em;">09 October 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;<a href="/tag/约瑟夫">约瑟夫</a>&nbsp;</p>
 <div class="post">
-<p>约瑟夫问题已经很常见了,是由历史学家夫拉维.约瑟夫命名的古老问题,大致是有许多人围成圈,顺时针数数,逢三就自杀,最后剩下两个人得救,约瑟夫和他的小伙伴不想无谓自杀,于是迅速计算出他们应该待的位子.</p>
-<p>现在我们将这个问题稍微变化下,从围成圈的$n$个人开始数数,每隔一个就删去一个人,知道只有一个人幸存下来,$n = 10$的情况下,依次删去$2,4,6,8,10,3,5,7,1,9$,最后剩下原来的$5$号.记$J(n)$表示$n$个人能够幸存的原始编号,有$J(10) = 5$.</p>
-<p>考虑$2n$个人<br />
-$$1, 2, 3, 4, 5, 6 &#8230; 2n \notag$$</p>
-<p>经过一轮后存活$n$个人:<br />
-$$1, 3, 5 &#8230; 2n-1\notag$$</p>
-<p>也就是说:<br />
-$$J(2n) = 2J(n) &#8211; 1 \notag$$</p>
-<p>现在考虑$2n+1$的情况:<br />
-$$1, 2, 3, 4, 5, 6 &#8230; 2n+1 \notag$$</p>
-<p>经过一轮后还有n+1个人,为了方便,我们再把原来的1号杀掉:<br />
-$$3, 5, 7, 9&#8230; 2n+1 \notag$$</p>
-<p>可以发现:<br />
-$$J(2n+1) = 2J(n) + 1 \notag$$</p>
-<p>我们有:<br />
-\begin{equation}<br />
+<p>这次我们将约瑟夫问题的递归式做如下改动:</p>
+<p>\begin{equation}<br />
 \begin{cases}<br />
-J(1) &amp;= 1\\<br />
-J(2n)&amp;= 2J(n) &#8211; 1 ,n \ge 1 \\<br />
-J(2n+1) &amp;= 2J(n) + 1 ,n \ge 1 <br />
-\end{cases}<br />
+f(1) &amp;= \alpha \\<br />
+f(2n)&amp;= 2f(n) + \beta \\<br />
+f(2n+1) &amp;= 2f(n) + \gamma<br />
+\end{cases} \label{org}<br />
 \end{equation}</p>
-<p>我们给出相关的值(#仅仅是为了补全空格):</p>
+<p>通过简单枚举,我们得到以下值</p>
 <table>
 	<tr>
-		<td> $n$  </td>
-		<td> 1 </td>
-		<td colspan="2">2  3 </td>
-		<td colspan="4">4  5  6  7 </td>
-		<td colspan="8">8  9  10  11  12  13  14  15 </td>
-		<td> 16 </td>
+		<th>$n$ </th>
+		<th>$f(n)$          </th>
 	</tr>
 	<tr>
-		<td>$J(n)$</td>
-		<td> 1 </td>
-		<td colspan="2">1  3 </td>
-		<td colspan="4">1  3  5  7 </td>
-		<td colspan="8">1  3  #5  #7  #9  11  13  15 </td>
-		<td> #1 </td>
+		<td> 1     </td>
+		<td> $\alpha$          </td>
+	</tr>
+	<tr>
+		<td> 2     </td>
+		<td> $2\alpha + \beta$ </td>
+	</tr>
+	<tr>
+		<td> 3     </td>
+		<td> $2\alpha + \gamma$ </td>
+	</tr>
+	<tr>
+		<td> 4     </td>
+		<td> $4\alpha + 3\beta$ </td>
+	</tr>
+	<tr>
+		<td> 5     </td>
+		<td> $4\alpha + 2\beta + \gamma$ </td>
+	</tr>
+	<tr>
+		<td> $\vdots$</td>
+		<td> $\vdots$ </td>
 	</tr>
 </table>
-<p>我们可以看出,将$n$写成$2^m+l$的形式, $J(n) = J(2^m+l) = 2l + 1$</p>
-<p>使用数学归纳法证明其正确性.</p>
-<p>当$n=2$时, $J(2) = 2J(1) &#8211; 1 = 1$成立, 设$n \lt 2^m + 1$是成立</p>
-<ul>
-	<li>$2^m+l$ 为偶数时</li>
-</ul>
-<p>显然$l$为偶数, $J(2^m+l) = 2J(2^{m-1} + { l \over 2}) &#8211; 1 = 2(2 \cdot {l \over 2} + 1) &#8211; 1 = 2l + 1$ 成立.</p>
-<ul>
-	<li>$2^m+l$ 为奇数</li>
-</ul>
-<p>显然$l$为奇数, $J(2^m+l) = J(2^m + l &#8211; 1 + 1) = 2J(2^{m-1} + {l &#8211; 1 \over 2 } + 1) = 2(2\cdot { l &#8211; 1 \over 2} + 1) + 1 = 2l + 1$ 成立.</p>
-<p>令$n=\left(b_mb_{m-1}\cdots b_1b_0\right)_ 2$ 那么$l=\left(0b_{m-1}\cdots b_1b_0\right)_ 2$</p>
-<p>\begin{equation}<br />
+<p>我们推测<br />
+$$f(n) = A(n)\alpha + B(n)\beta + C(n)\gamma$$<br />
+这里就需要求$A(n)$,$B(n)$,$C(n)$的表达式,当然通过观察我们可以猜出一个表达式,然后通过数学归纳法进行证明.这里使用更加简便的待定系数法,凑出$A(n)$,$B(n)$, $C(n)$的值.</p>
+<p>令$\alpha = 1, \beta = \gamma = 0$, 我们有<br />
+\begin{equation}<br />
 \begin{split}<br />
-    J(\left(b_mb_{m-1}\cdots b_2b_0\right)_ 2) &amp;= 2\left(0b_{m-1}\cdots b_1b_0\right)_ 2 + 1\\<br />
-            &amp;= \left(0b_{m-1}\cdots b_1b_0\right)_ 2 \ll 1 + 1 \\<br />
-            &amp;= \left(b_{m-1}\cdots b_1b_01\right)_ 2 \\<br />
-            &amp;= \left(b_{m-1}\cdots b_1b_0b_m\right)_2<br />
+f(n) &amp;= A(n) &amp;= 1 \\<br />
+f(2n) &amp;= A(2n) &amp;= 2A(n) \\<br />
+f(2n+1) &amp;= A(2n+1) &amp;= 2A(n)<br />
 \end{split}<br />
 \end{equation}</p>
-<p>这样我们就有快速求一个整数$n$,隔一个杀人的约瑟夫环问题,只要对其做一次二进制下的循环左移就可以了.</p>
+<p>这个式子我们把通过观察,很容易得到$n=2^m + l$<br />
+$$A(n) = 2^m \label{fneq1}$$</p>
+<p>还剩$B(n),C(n)$,考虑$f(n)$是常函数的情情况,令$f(n) = 1$:</p>
+<p>\begin{equation}<br />
+\begin{cases}<br />
+f(1) &amp;= \alpha &amp; &amp;= 1 \\<br />
+f(2n) &amp;= 2f(n) + \beta &amp;= 2 + \beta &amp;= 1 \\<br />
+f(2n+1) &amp;= 2f(n) + \gamma &amp;= 2 + \gamma &amp;= 1<br />
+\end{cases} <br />
+\end{equation}</p>
+<p>我们可以得出$\alpha = 1, \beta = -1, \gamma = -1$,也就是说有:<br />
+$$f(n) = A(n) &#8211; B(n) &#8211; C(n) = 1\label{fneq2}$$</p>
+<p>我们在考虑$f(n) = n$的情况:<br />
+\begin{equation}<br />
+\begin{split}<br />
+f(1) &amp;= 1 \\<br />
+f(2n) &amp;= 2f(n) + \beta &amp;= 2n + \beta &amp;= 2n \\<br />
+f(2n+1) &amp;= 2f(n) + \gamma  &amp;= 2n + \gamma &amp;= 2n + 1<br />
+\end{split}<br />
+\end{equation}</p>
+<p>通过上式,待定系数,我们可以得到$\beta = 0, \gamma = 1$<br />
+$$ f(n) = A(n) + C(n) = n\label{fneq3}$$</p>
+<p>然后根据公式$\ref{fneq1}, \ref{fneq2}, \ref{fneq3}$,我们可以可以得到:<br />
+$$<br />
+\begin{cases}<br />
+A(n) &amp;= 2^m \\<br />
+B(n) &amp;= 2^m &#8211; (n-2^m) &#8211; 1\\<br />
+C(n) &amp;= n &#8211; 2^m<br />
+\end{cases}<br />
+$$</p>
+<p>这里$n-2^m$显然就是上次约瑟夫问题中的把$n$写成$2^m+l$中的$l$,上式就成为<br />
+$$<br />
+\begin{cases}<br />
+A(n) &amp;= 2^m \\<br />
+B(n) &amp;= 2^m &#8211; l &#8211; 1 \\<br />
+C(n) &amp;= l<br />
+\end{cases}<br />
+$$</p>
+<p>以上是 <a href="http://book.douban.com/subject/1231910/">具体数学</a> 的解法,也是上课讲的, 当时有人再讨论用$f(n) = B(n), f(n) = C(n)$待定系数能否求出$B(n), C(n)$,回去写了下,实际上也是可以的,但是没有向上面那么简洁.</p>
+<p>令$f(n) = B(n)$则$\alpha = 0, \beta = 1, \gamma = 0$得到方程<br />
+\begin{equation}<br />
+\begin{split}<br />
+f(1) &amp;= B(1) &amp;= 0 \\<br />
+f(2n) &amp;= 2f(n) + 1 &amp;= 2B(n) + 1 &amp;= B(2n) \\<br />
+\end{split}<br />
+\end{equation}</p>
+<p>依然是一个递归式,但是这个递归式相比$\ref{org}$,我们更加容易推测,同样枚举</p>
+<table>
+	<tr>
+		<td> $n$    </td>
+		<td>  1 </td>
+		<td> 2 3 </td>
+		<td> 4 5 6 7 </td>
+		<td> 8 9 $\cdots$ </td>
+	</tr>
+	<tr>
+		<td> $B(n)$ </td>
+		<td>  0 </td>
+		<td> 1 0 </td>
+		<td> 3 2 1 0 </td>
+		<td> 7 6 $\cdots$ </td>
+	</tr>
+</table>
+<p>同样,将$n$写成$2^m + l$的形式, $B(n) = 2^m &#8211; l &#8211; 1$, 最后同样用数学归纳法证明其正确性.$C(n)$同理, 相比之前的假设$f(n)=1,f(n)=n$而言,该方法同样刻个得到,只是没有上一种方法简洁.</p>
+<p>同样我们考虑其二进制的形式, 并将原式写成<br />
+$$<br />
+\begin{cases}<br />
+f(1) &amp;= \alpha \\<br />
+f(2n+j) &amp;= 2f(n) + \beta_j<br />
+\end{cases}<br />
+$$</p>
+<p>我们就有</p>
+<p>$$<br />
+\begin{split}<br />
+f((b_mb_{m-1}\cdots b_1b_0)_ 2) &amp;= 2f((b_mb_{m-1}\cdots b_1)_ 2) + \beta_{b_0} \\<br />
+        &amp;= 4f((b_mb_{m-1}\cdots b_2)_ 2 ) + 2\beta_{b_1} + \beta_{b_0} \\<br />
+        &amp;= 8f((b_mb_{m-1}\cdots b_3)_ 2 ) + 2^2\beta_{b_2} + 2^1\beta_{b_1} + 2^0\beta_{b_0} \\<br />
+        &amp;\vdots \\<br />
+        &amp;= 2^mf((b_m)_ 2) + 2^{m-1}\beta_{b_{m-1}} + \cdots + 2^0\beta_{b_0} \\<br />
+        &amp;= 2^m\alpha + 2^{m-1}\beta_{b_{m-1}} + \cdots + 2^0\beta_{b_0} \\<br />
+        &amp;= (\alpha\beta_{b_{m-1}}\beta_{b_{m-2}}\cdots\beta_{b_1}\beta_{b_0})_ 2<br />
+\end{split}<br />
+$$</p>
+<p>这样就得到了一个比较通用的表达式了.</p>
 </div>
 
 <!-- JiaThis Button BEGIN -->
