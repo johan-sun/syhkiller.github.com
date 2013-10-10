@@ -6,3 +6,123 @@ tag :
     - 具体数学
     - 约瑟夫
 ---
+
+这次我们将约瑟夫问题的递归式做如下改动:
+
+\begin{equation}
+\begin{cases}
+f(1) &= \alpha \\
+f(2n)&= 2f(n) + \beta \\
+f(2n+1) &= 2f(n) + \gamma
+\end{cases} \label{org}
+\end{equation}
+
+通过简单枚举,我们得到以下值
+
+|_. $n$ |_. $f(n)$          |
+| 1     | $\alpha$          |
+| 2     | $2\alpha + \beta$ |
+| 3     | $2\alpha + \gamma$ |
+| 4     | $4\alpha + 3\beta$ |
+| 5     | $4\alpha + 2\beta + \gamma$ |
+| $\vdots$| $\vdots$ |
+
+我们推测
+$$f(n) = A(n)\alpha + B(n)\beta + C(n)\gamma$$
+这里就需要求$A(n)$,$B(n)$,$C(n)$的表达式,当然通过观察我们可以猜出一个表达式,然后通过数学归纳法进行证明.这里使用更加简便的待定系数法,凑出$A(n)$,$B(n)$, $C(n)$的值.
+
+令$\alpha = 1, \beta = \gamma = 0$, 我们有
+\begin{equation}
+\begin{split}
+f(n) &= A(n) &= 1 \\
+f(2n) &= A(2n) &= 2A(n) \\
+f(2n+1) &= A(2n+1) &= 2A(n)
+\end{split}
+\end{equation}
+
+这个式子我们把通过观察,很容易得到$n=2^m + l$
+$$A(n) = 2^m \label{fneq1}$$
+
+还剩$B(n),C(n)$,考虑$f(n)$是常函数的情情况,令$f(n) = 1$:
+
+\begin{equation}
+\begin{cases}
+f(1) &= \alpha & &= 1 \\
+f(2n) &= 2f(n) + \beta &= 2 + \beta &= 1 \\
+f(2n+1) &= 2f(n) + \gamma &= 2 + \gamma &= 1
+\end{cases} 
+\end{equation}
+
+我们可以得出$\alpha = 1, \beta = -1, \gamma = -1$,也就是说有:
+$$f(n) = A(n) - B(n) - C(n) = 1\label{fneq2}$$
+
+我们在考虑$f(n) = n$的情况:
+\begin{equation}
+\begin{split}
+f(1) &= 1 \\
+f(2n) &= 2f(n) + \beta &= 2n + \beta &= 2n \\
+f(2n+1) &= 2f(n) + \gamma  &= 2n + \gamma &= 2n + 1
+\end{split}
+\end{equation}
+
+通过上式,待定系数,我们可以得到$\beta = 0, \gamma = 1$
+$$ f(n) = A(n) + C(n) = n\label{fneq3}$$
+
+然后根据公式$\ref{fneq1}, \ref{fneq2}, \ref{fneq3}$,我们可以可以得到:
+$$
+\begin{cases}
+A(n) &= 2^m \\
+B(n) &= 2^m - (n-2^m) - 1\\
+C(n) &= n - 2^m
+\end{cases}
+$$
+
+这里$n-2^m$显然就是上次约瑟夫问题中的把$n$写成$2^m+l$中的$l$,上式就成为
+$$
+\begin{cases}
+A(n) &= 2^m \\
+B(n) &= 2^m - l - 1 \\
+C(n) &= l
+\end{cases}
+$$
+
+以上是 "具体数学":http://book.douban.com/subject/1231910/ 的解法,也是上课讲的, 当时有人再讨论用$f(n) = B(n), f(n) = C(n)$待定系数能否求出$B(n), C(n)$,回去写了下,实际上也是可以的,但是没有向上面那么简洁.
+
+令$f(n) = B(n)$则$\alpha = 0, \beta = 1, \gamma = 0$得到方程
+\begin{equation}
+\begin{split}
+f(1) &= B(1) &= 0 \\
+f(2n) &= 2f(n) + 1 &= 2B(n) + 1 &= B(2n) \\
+\end{split}
+\end{equation}
+
+依然是一个递归式,但是这个递归式相比$\ref{org}$,我们更加容易推测,同样枚举
+
+| $n$    |  1 | 2 3 | 4 5 6 7 | 8 9 $\cdots$ |
+| $B(n)$ |  0 | 1 0 | 3 2 1 0 | 7 6 $\cdots$ |
+
+同样,将$n$写成$2^m + l$的形式, $B(n) = 2^m - l - 1$, 最后同样用数学归纳法证明其正确性.$C(n)$同理, 相比之前的假设$f(n)=1,f(n)=n$而言,该方法同样刻个得到,只是没有上一种方法简洁.
+
+同样我们考虑其二进制的形式, 并将原式写成
+$$
+\begin{cases}
+f(1) &= \alpha \\
+f(2n+j) &= 2f(n) + \beta_j
+\end{cases}
+$$
+
+我们就有
+
+$$
+\begin{split}
+f((b_mb_{m-1}\cdots b_1b_0)_ 2) &= 2f((b_mb_{m-1}\cdots b_1)_ 2) + \beta_{b_0} \\
+        &= 4f((b_mb_{m-1}\cdots b_2)_ 2 ) + 2\beta_{b_1} + \beta_{b_0} \\
+        &= 8f((b_mb_{m-1}\cdots b_3)_ 2 ) + 2^2\beta_{b_2} + 2^1\beta_{b_1} + 2^0\beta_{b_0} \\
+        &\vdots \\
+        &= 2^mf((b_m)_ 2) + 2^{m-1}\beta_{b_{m-1}} + \cdots + 2^0\beta_{b_0} \\
+        &= 2^m\alpha + 2^{m-1}\beta_{b_{m-1}} + \cdots + 2^0\beta_{b_0} \\
+        &= (\alpha\beta_{b_{m-1}}\beta_{b_{m-2}}\cdots\beta_{b_1}\beta_{b_0})_ 2
+\end{split}
+$$
+
+这样就得到了一个比较通用的表达式了.
