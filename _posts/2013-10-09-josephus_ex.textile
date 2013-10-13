@@ -126,3 +126,23 @@ f((b_mb_{m-1}\cdots b_1b_0)_ 2) &= 2f((b_mb_{m-1}\cdots b_1)_ 2) + \beta_{b_0} \
 $$
 
 这样就得到了一个比较通用的表达式了.
+
+
+我们式子扩展为更加一般的形式
+$$
+\begin{cases}
+f(j) &= \alpha_j & 1 \le j \lt d \\
+f(dn+j) &= cf(n) + \beta_j & 0 \le j \lt d, n \gt 1
+\end{cases}
+$$
+
+我们令$n = (b_mb_{m-1}b_{m-2}\cdots b_1b_0)_ d$有
+$$
+\begin{split}
+f((b_mb_{m-1}\cdots b_1b_0)_ d) &= cf((b_mb_{m-1}\cdots b_2b_1)_ d) + \beta_{b_0} \\
+        &= c^2f((b_mb_{m-1}\cdots b_3b_2)_ d) + c\beta_{b_1} + \beta_{b_0} \\
+        &= c^mf((b_m)_ d) + c^{m-1}\beta_{b_{m-1}} + \cdots + c\beta_{b_1} + \beta_{b_0} \\
+        &= c^m\alpha_{b_m} +  c^{m-1}\beta_{b_{m-1}} + \cdots + c\beta_{b_1} + \beta_{b_0} \\
+        &= (\alpha_{b_m}\beta_{b_{m-1}}\cdots \beta_{b_1}\beta_{b_0})_ c
+\end{split}
+$$
