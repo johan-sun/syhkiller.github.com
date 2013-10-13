@@ -64,17 +64,17 @@
 	<h3>标签</h3>
 	<p class="taglist">
 	
-		<a href="/tag/textile">textile(1)</a>
+		<a href="/tag/约瑟夫">约瑟夫(2)</a>
 	
 		<a href="/tag/mathjax">mathjax(1)</a>
 	
-		<a href="/tag/js">js(1)</a>
-	
-		<a href="/tag/具体数学">具体数学(4)</a>
+		<a href="/tag/textile">textile(1)</a>
 	
 		<a href="/tag/分布式">分布式(1)</a>
 	
-		<a href="/tag/约瑟夫">约瑟夫(2)</a>
+		<a href="/tag/具体数学">具体数学(4)</a>
+	
+		<a href="/tag/js">js(1)</a>
 	
 	</p>
 		<!--
@@ -228,6 +228,23 @@ f((b_mb_{m-1}\cdots b_1b_0)_ 2) &amp;= 2f((b_mb_{m-1}\cdots b_1)_ 2) + \beta_{b_
 \end{split}<br />
 $$</p>
 <p>这样就得到了一个比较通用的表达式了.</p>
+<p>我们式子扩展为更加一般的形式<br />
+$$<br />
+\begin{cases}<br />
+f(j) &amp;= \alpha_j &amp; 1 \le j \lt d \\<br />
+f(dn+j) &amp;= cf(n) + \beta_j &amp; 0 \le j \lt d, n \gt 1<br />
+\end{cases}<br />
+$$</p>
+<p>我们令$n = (b_mb_{m-1}b_{m-2}\cdots b_1b_0)_ d$有<br />
+$$<br />
+\begin{split}<br />
+f((b_mb_{m-1}\cdots b_1b_0)_ d) &amp;= cf((b_mb_{m-1}\cdots b_2b_1)_ d) + \beta_{b_0} \\<br />
+        &amp;= c^2f((b_mb_{m-1}\cdots b_3b_2)_ d) + c\beta_{b_1} + \beta_{b_0} \\<br />
+        &amp;= c^mf((b_m)_ d) + c^{m-1}\beta_{b_{m-1}} + \cdots + c\beta_{b_1} + \beta_{b_0} \\<br />
+        &amp;= c^m\alpha_{b_m} +  c^{m-1}\beta_{b_{m-1}} + \cdots + c\beta_{b_1} + \beta_{b_0} \\<br />
+        &amp;= (\alpha_{b_m}\beta_{b_{m-1}}\cdots \beta_{b_1}\beta_{b_0})_ c<br />
+\end{split}<br />
+$$</p>
 </div>
 
 <!-- JiaThis Button BEGIN -->
