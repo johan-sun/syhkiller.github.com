@@ -91,28 +91,68 @@
       <div id="content">
         <!-- insert the page content here -->
 
-	<h1>平面上的线</h1>
-<p style="margin-top:-16px; text-indent:0em;">21 September 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;</p>
+	<h1>和式</h1>
+<p style="margin-top:-16px; text-indent:0em;">14 October 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;</p>
 <div class="post">
-<p>用$L_n$表示$n$条直线在空间中划分的子空间个数,明显得有</p>
-<p>\begin{equation*}<br />
+<p>本次主要介绍和式的一些性质,以及扰动法.</p>
+<h6>和式的表示</h6>
+<p>使用$\sum_{p(k)}a_k$的形式表示和式更加方便,因为迭代变量k是可以运算的,比如$\sum_{k=1}^{n}a_k$用$k+1$代替$k$,则原式应为$$\sum_{k=2}^{n-1}a_{k+1}\notag$$不太明了,用全部下标方式表示就是$$\sum_{1 \le k + 1\le n}a_{k+1} \notag$$</p>
+<p>和式还有另外一种布尔运算的表示形式<br />
+$$ \sum_{p(k)}a_k = \sum_k a_k\left [ p(k) \right ] \notag $$</p>
+<p>其中$\left[ p(k) \right ]$表示$p(k)$为真时$\left [ p(k) \right ]$值为1,否则为0.</p>
+<h6>和式与递归式</h6>
+<p>和式与递归式的一般形式<br />
+\begin{equation}<br />
 \begin{split}<br />
-L_0 &amp;= 1 \\<br />
-L_1 &amp;= 2 \\<br />
-L_2 &amp;= 4<br />
+R_0 &amp;= \alpha \\<br />
+R_n &amp;= R_{n-1} + \beta n + \gamma  &amp;, n \gt 0<br />
+\end{split} \label{eq1}<br />
+\end{equation}</p>
+<p>设<br />
+$$R_n = A(n)\alpha + B(n)\beta + C(n)\gamma \label{eqrn} $$</p>
+<p>令$R_n = 1$有<br />
+$$<br />
+\begin{split}<br />
+R_0 &amp;= \alpha &amp;= 1 \\<br />
+R_n &amp;= R_{n-1} + \beta n + \gamma \\<br />
+    &amp;= \beta n + 1 + \gamma + 1 &amp;= 1<br />
+\end{split} \label{eqR1}<br />
+$$<br />
+由上式待定系数得到$\alpha = 1, \beta = \gamma = 0$带入$\ref{eqrn}$中得到<br />
+$$A(n) = 1 \label{eqan} $$</p>
+<p>令$R_n = n$, 有<br />
+$$<br />
+\begin{split}<br />
+R_0 &amp;= \alpha &amp;= 0 \\<br />
+R_n &amp;= R_{n-1} + \beta n + \gamma \\<br />
+    &amp;= (\beta + 1)n + \gamma &#8211; 1 &amp;= n<br />
 \end{split}<br />
-\end{equation*}</p>
-<p>当加入第$n$直线,最多与前$n-1$条直线产生$n-1$个交点(与它们不平行),从而产生$n$个新的空间.所以有</p>
-<p>$$ L_n = L_{n-1} + n \label{ln} $$</p>
-<p>$L_n$的闭式:</p>
-<p>$$ L_n = {n(n+1) \over 2}, n \ge 0 $$</p>
-<ul>
-	<li>折现代替直线</li>
-</ul>
-<p>现将上述问题用折现代替直线,每一条直线包含一条&quot;锯齿&quot;.我们可以看到,一条折现与两条直线类似,但是在相交的定点一处少掉了两条直线,是的比两条时候损失了2个区域.可以发现为了使得划分区域最多的方法,仅仅损失两个区域,(在折线的两条射线部分尽可能全部相交,那么在人为在定点衍生涉嫌就一定相交,直线要么没有交点,要么1个交点).令$Z_n$表示$n$条折线,则<br />
-$$ Z_n = L_{2n} &#8211; 2n = {2n(2n+1) \over 2} + 1 &#8211; 2n \\<br />
-		= 2n^2 &#8211; n + 1, n \ge 0<br />
+$$<br />
+由上式待定系数得$\alpha = 0, \beta = 0, \gamma = 1$,带入$\ref{eqrn}$得到<br />
+$$ C_n = n \label{eqbc1} $$</p>
+<p>令$R_n = n^2$,有<br />
+$$<br />
+\begin{split}<br />
+R_0 &amp;= \alpha &amp;= 0\\<br />
+R_n &amp;= R_{n-1} + \beta n + \gamma \\<br />
+    &amp;= (n-1)^2 + \beta n + \gamma \\<br />
+    &amp;= n^2 + (-2+\beta)n + 1 + \gamma &amp;= n^2<br />
+\end{split}<br />
+$$<br />
+由上式待定系数得到$\alpha = 0, \beta = 2, \gamma = -1$,带入$\ref{eqrn}$得到<br />
+$$<br />
+2B(n) &#8211; C(n) = n^2 \label{eqbc2}<br />
 $$</p>
+<p>由$\ref{eqan}, \ref{eqbc1}, \ref{eqbc2}$解方程得<br />
+$$<br />
+\begin{split}<br />
+A_n &amp;= 1\\<br />
+B_n &amp;= {n^2 + n \over 2}\\<br />
+C_n &amp;= n<br />
+\end{split}<br />
+$$<br />
+带入$\ref{eqrn}$就获得了$\ref{eq1}$形式的通解<br />
+$$R_n = {n(n+1) \over 2} \beta + n\gamma + \alpha$$</p>
 </div>
 
 <!-- JiaThis Button BEGIN -->
