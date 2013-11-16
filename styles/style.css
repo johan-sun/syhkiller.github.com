@@ -1,11 +1,13 @@
 html{height: 100%;}
 
 body
-{ font-family: "lucida sans", arial, sans-serif;
+{ /*font-family: arial, sans-serif, "lucida sans";*/
+  /*font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;*/
+  font-family:"Open Sans","Hiragino Sans GB","Helvetica Neue","微软雅黑",serif
   padding: 0px;
   margin: 0px;
-  font-size: .78em;
-  background: #F6F4F0;
+  font-size: .75em;
+  background: #F8F6F2;
   color: #635B53;}
 
 p
@@ -14,14 +16,13 @@ p
   line-height: 1.7em;}
 
 h1, h2, h3, h4
-{ font-size: 150%;
-  padding: 7px 0px 5px 0px; 
+{ padding: 7px 0px 5px 0px; 
   margin: 0px 0px 12px 0px; 
   font-weight: normal;
   color: #342F28;
-  font-family: serif;}
+  /*font-family: serif;*/}
 
-h1, h3
+h1
 { text-transform: uppercase;
   margin: 10px 0px 20px 0px;
   padding: 5px 20px 5px 0px;
