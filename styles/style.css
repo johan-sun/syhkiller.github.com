@@ -7,7 +7,7 @@ body
   padding: 0px;
   margin: 0px;
   font-size: .75em;
-  background: #F8F6F2;
+  background: url(bg.jpg) repeat-y center;
   color: #635B53;}
 
 p
@@ -183,13 +183,14 @@ ul#menu li a:hover
 { color: #00C5EE;}
 
 #site_content
-{ width: 875px;
+{ 
+  width: 1024px;
   margin-top: 10px;
   overflow: hidden;} 
 
 .sidebar
 { float: right;
-  width: 178px;
+  width: 160px;
   padding: 20px 25px 15px 15px;}
 
 .sidebar ul
@@ -214,9 +215,17 @@ ul#menu li a:hover
 
 #content
 { text-align: left;
-  width: 624px;
+  width: 780px;
   float: left;
-  padding: 20px 10px 15px 0px;}
+  background: url(article.jpg) repeat top right;
+  padding: 0px 20px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(206,206,206);
+  border-radius: 4px;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+}
 
 #footer
 { width: 100%;

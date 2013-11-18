@@ -92,3 +92,39 @@ $$R_n = {n(n+1) \over 2} \beta + n\gamma + \alpha$$
 
 h3. 递归式转化为和式
 
+若递归式形式为
+$$
+a_nT_n = b_nT_{n-1} + c_n \label{eqr}
+$$
+我们想办法将其转换为一个和式，思想就是两边乘以一个 _求和因子_ $s_n$
+$$
+s_na_nT_n = s_nb_nT_{n-1} + s_nc_n
+$$
+我们的目标是将上式写成$S_n = S_{n-1} + \delta_n$的形式，那么需要有
+$$
+s_nb_n = s_{n-1}a_{n-1} \label{eq2}
+$$
+
+那么记$S_n = s_na_nT_n$，递归式可以写成
+$$
+S_n = S_{n-1} + s_nc_n
+$$
+从而有
+$$
+S_n = s_0a_0T_0 + \sum_{k=1}^ns_kc_k = s_1b_1T_0 + \sum_{k=1}^ns_kc_k
+$$
+从而$\ref{eqr}$的解为
+$$
+T_n = {1\over s_na_n}\left( s_1b_1T_0 + \sum_{k-1}^ns_kc_k \right)
+$$
+
+其中$\ref{eq2}$的等式可以写成
+\begin{equation}
+\begin{split}
+s_n &= {s_{n-1}a_{n-1}\over b_n}\\
+	&= {s_{n-2}a_{n-2}a_{n-1} \over b_nb_{n-1}}\\
+	&\vdots \\
+	&= {s_1a_1a_2\cdots a_{n-1} \over b_2b_3\cdots b_n}
+\end{split}
+\end{equation}
+取$s_1$为1即可。
