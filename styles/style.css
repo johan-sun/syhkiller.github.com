@@ -2,13 +2,13 @@ html{height: 100%;}
 
 body
 { /*font-family: arial, sans-serif, "lucida sans";*/
-  /*font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;*/
-  font-family:"Open Sans","Hiragino Sans GB","Helvetica Neue","微软雅黑",serif
+  font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
   padding: 0px;
   margin: 0px;
-  font-size: .75em;
+  font-size: 0.9em;
   background: url(bg.jpg) repeat-y center;
   color: #635B53;}
+
 
 p
 { margin: 0px;
@@ -54,7 +54,7 @@ form
   margin-right: 10px;}
 
 .right
-{ float: right; 
+{ float: left; 
   margin-left: 10px;}
 
 .center
@@ -190,7 +190,7 @@ ul#menu li a:hover
 
 .sidebar
 { float: right;
-  width: 160px;
+  width: 140px;
   padding: 20px 25px 15px 15px;}
 
 .sidebar ul
@@ -215,10 +215,10 @@ ul#menu li a:hover
 
 #content
 { text-align: left;
-  width: 780px;
+  width: 760px;
   float: left;
   background: url(article.jpg) repeat top right;
-  padding: 0px 20px;
+  padding: 0px 40px;
   margin-bottom: 10px;
   border: 1px solid rgb(206,206,206);
   border-radius: 4px;
@@ -371,3 +371,5 @@ border:none;
     float:left;
     padding:0px 4px;
 }
+
+
