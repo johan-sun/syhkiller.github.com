@@ -160,9 +160,9 @@ S_n + ax^{n+1} &= ax^0 + \sum_{0 \le k \le n}ax^{k+1}\\
 \begin{equation}
 \begin{split}
 S_n + (n+1)2^{n+1} &= 0 + \sum_{0 \le k \le n}(k+1)2^{k+1} \\
-		&= \sum_{0 \le k \le n}k2^{k+1} + \sum{0 \le k \le n}2^{k+1} \\
+		&= \sum_{0 \le k \le n}k2^{k+1} + \sum_{0 \le k \le n}2^{k+1} \\
 		&= 2\sum_{0 \le k \le n}k2^k + 2\sum_{0 \le k \le n}2^k \\
-		&= 2S_n + 2\sum_{0 \le k \le n} \\
+		&= 2S_n + 2\sum_{0 \le k \le n}2^k \\
 		&= 2S_n + 2^{n+2} - 2
 \end{split}
 \end{equation}
