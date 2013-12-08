@@ -128,3 +128,50 @@ s_n &= {s_{n-1}a_{n-1}\over b_n}\\
 \end{split}
 \end{equation}
 取$s_1$为1即可。
+
+h3. 扰动法
+
+扰动法的基础是将和式中的一项分离出去,思想是从一个未知的和式开始,记为$S_n$:
+$$S_n = \sum_{0 \le k \le n} a_k$$
+对于最后一项和第一项将其分离出来,重新改写$S_{n+1}$：
+\begin{equation}
+\begin{split}
+S_n + a_{n+1} &= \sum_{0 \le k \le n+1} a_k \\
+	&= a_0 + \sum_{ 1 \le k \le n+1} a_k\\
+	&= a_0 + \sum_{1 \le k+1 \le n+1}a_{k+1}\\
+	&= a_0 + \sum_{0 \le k \le n}a_{k+1}
+\end{split}
+\end{equation}
+我们将最后一项$\sum_{0 \le k \le n}a_{k+1}$ 尝试用$S_n$ 表示出来那么就可以得到$S_n$的闭形式。
+
+例如求_几何级数_的和：
+$$S_n = \sum_{0 \le k \le n}ax^k$$
+利用扰动法的格式：
+\begin{equation}
+\begin{split}
+S_n + ax^{n+1} &= ax^0 + \sum_{0 \le k \le n}ax^{k+1}\\
+		&= ax^0 + a\sum_{0 \le k \le n}ax^k\\
+		&= ax^0 + xS_n \label{eqge}
+\end{split}
+\end{equation}
+式$\ref{eqge}$可以很快求得$S_n = {a-ax^{n+1} \over 1-x}, x \ne 1$ 
+
+再求一个例子：$S_n = \sum_{0 \le k \le n}k2^k$
+\begin{equation}
+\begin{split}
+S_n + (n+1)2^{n+1} &= 0 + \sum_{0 \le k \le n}(k+1)2^{k+1} \\
+		&= \sum_{0 \le k \le n}k2^{k+1} + \sum{0 \le k \le n}2^{k+1} \\
+		&= 2\sum_{0 \le k \le n}k2^k + 2\sum_{0 \le k \le n}2^k \\
+		&= 2S_n + 2\sum_{0 \le k \le n} \\
+		&= 2S_n + 2^{n+2} - 2
+\end{split}
+\end{equation}
+求得$S_n = (n-1)2^{n+1} + 2$
+
+对于$S_n = \sum_{0 \le k \le n} x^k = {1-x^{n+1} \over 1-x}$我们对其两边求导有：
+\begin{equation}
+\sum_{0 \le k \le n}kx^{k-1} = {1-x^{n+1} + (n+1)x^n \over (1-x)^2} , x \ne 1
+\end{equation}
+等式两边乘以$x$我们就得到了$\sum_{0 \le k \le n}kx^k$的结果为：
+$$\sum_{0\le k \le n} = {x - (n+1)x^{n+1} - x^{n+2} \over (1-x)^2}$$
+如果使用扰动法，结果相同。
