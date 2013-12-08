@@ -91,30 +91,16 @@
       <div id="content">
         <!-- insert the page content here -->
 
-	<h1>解决MathJax与textile冲突</h1>
-<p style="margin-top:-16px; text-indent:0em;">27 September 2013 | CATEGORY:<a href="/categories/前端">前端</a> | TAGS:<a href="/tag/textile">textile</a>&nbsp;<a href="/tag/mathjax">mathjax</a>&nbsp;</p>
+	<h1>一道课后作业计算x=x+1执行的次数</h1>
+<p style="margin-top:-16px; text-indent:0em;">27 November 2013 | CATEGORY:<a href="/categories/数学">数学</a> | TAGS:<a href="/tag/具体数学">具体数学</a>&nbsp;<a href="/tag/约瑟夫">约瑟夫</a>&nbsp;</p>
 <div class="post">
-<p>因为要写公式,所以整了个MathJax, 开始使用Markdown, 结果发现太多地方需要转义, 比例公式中需要用@\\<code>的地方写的时候要</code>\\\\@, * 的地方需要\ * , 表示下标的 _ 需要\ _ ,后来就换成textile了,textile 总体不错, * _ 等标记是按照分词来划分的,所以紧跟着写 * _ 都不要紧.</p>
-<p>但是还是发现有问题的地方,比如如下$\TeX$ <code>J(\left(b_mb_{m-1}\cdots b_2b_0\right)_2) &amp;= 2\left(0b_{m-1}\cdots b_1b_0\right)_2 + 1</code>, 由于部分_会被替换成i标签,导致MathJax渲染失败,所以比较纠结.</p>
-<p>研究了下,textile文字修饰的标记是更具分词来决定的, 必须是两个_之间内容,拿掉_后可以被分词, 所以英文原本就是按照空格分词,中文需要加空格分词, 但是如果_前面是标点符号,那么也可以被分词的,如下的都可以被修饰</p>
-<blockquote>
-<p>文字 _强调_<br />
-文字,_强调_<br />
-文字)_强调_</p>
-</blockquote>
-<p>修饰后</p>
-<blockquote>
-<p>文字 <em>强调</em><br />
-文字,<em>强调</em><br />
-文字)<em>强调</em></p>
-</blockquote>
-<p>但是再仔细一研究,发现第一个_后面需要紧跟内容,不能有空白,所以为了防止意外被解析导致MathJax渲染失败,可以按照凡是写下标发现前面不是一个字母,是)}等,写_后空一格,然后在写下标的内容<br />
-如下不会被修饰</p>
-<blockquote>
-<p>文字 _ 强调_<br />
-文字,_ 强调_<br />
-文字)_ 强调_</p>
-</blockquote>
+<p>昨天晚上建哥改作业的时候问了我一道问题，求下面伪代码中x=x+1执行的次数，我自习一看，我艹，这种题课后题作为作业尼玛真是凶残，看来研一的具体数学也不是白学：</p>
+<div class="highlight"><pre><code class="python"><span class="lineno">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="lineno">2</span> 	<span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
+<span class="lineno">3</span> 	<span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+<span class="lineno">4</span> 		<span class="n">j</span> <span class="o">/=</span> <span class="mi">5</span>
+<span class="lineno">5</span> 		<span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div><p>我们记$g(n)标识while循环$f(n)$表示$x+=1$的执行次数，</p>
 </div>
 
 <!-- JiaThis Button BEGIN -->
