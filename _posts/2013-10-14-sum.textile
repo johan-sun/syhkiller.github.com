@@ -30,7 +30,7 @@ S_n &= S_{n-1} + a_n
 \end{split}
 $$
 
-可以利用一下递归式进行和式求解:
+可以利用以下递归式进行和式求解:
 \begin{equation}
 \begin{split}
 R_0 &= \alpha \\
@@ -46,10 +46,10 @@ $$
 \begin{split}
 R_0 &= \alpha &= 1 \\
 R_n &= R_{n-1} + \beta n + \gamma \\
-    &= \beta n + 1 + \gamma + 1 &= 1
+    &= 1 + \beta n + \gamma  &= 1
 \end{split} \label{eqR1}
 $$
-由上式待定系数得到$\alpha = 1, \beta = \gamma = 0$带入$\ref{eqrn}$中得到
+由于$n$是任意的，上式可由待定系数得到$\alpha = 1, \beta = \gamma = 0$(也可令$n=0,n=1$得到)，并带入$\ref{eqrn}$中得到
 $$A(n) = 1 \label{eqan} $$
 
 令$R_n = n$, 有
