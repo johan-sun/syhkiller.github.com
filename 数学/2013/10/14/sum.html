@@ -53,28 +53,28 @@
 	<h3>分类</h3>
 	<ul>
 		
-			<li><a href="/categories/数学">数学(6)</a></li>
-		
 			<li><a href="/categories/学习">学习(1)</a></li>
 		
 			<li><a href="/categories/前端">前端(2)</a></li>
+		
+			<li><a href="/categories/数学">数学(6)</a></li>
 		
 	</ul>
 
 	<h3>标签</h3>
 	<p class="taglist">
 	
-		<a href="/tag/textile">textile(1)</a>
-	
 		<a href="/tag/约瑟夫">约瑟夫(3)</a>
-	
-		<a href="/tag/mathjax">mathjax(1)</a>
-	
-		<a href="/tag/分布式">分布式(1)</a>
 	
 		<a href="/tag/具体数学">具体数学(6)</a>
 	
 		<a href="/tag/js">js(1)</a>
+	
+		<a href="/tag/textile">textile(1)</a>
+	
+		<a href="/tag/mathjax">mathjax(1)</a>
+	
+		<a href="/tag/分布式">分布式(1)</a>
 	
 	</p>
 		<!--
@@ -109,7 +109,7 @@ S_0 &amp;= a_0 \\<br />
 S_n &amp;= S_{n-1} + a_n <br />
 \end{split}<br />
 $$</p>
-<p>可以利用一下递归式进行和式求解:<br />
+<p>可以利用以下递归式进行和式求解:<br />
 \begin{equation}<br />
 \begin{split}<br />
 R_0 &amp;= \alpha \\<br />
@@ -123,10 +123,10 @@ $$<br />
 \begin{split}<br />
 R_0 &amp;= \alpha &amp;= 1 \\<br />
 R_n &amp;= R_{n-1} + \beta n + \gamma \\<br />
-    &amp;= \beta n + 1 + \gamma + 1 &amp;= 1<br />
+    &amp;= 1 + \beta n + \gamma  &amp;= 1<br />
 \end{split} \label{eqR1}<br />
 $$<br />
-由上式待定系数得到$\alpha = 1, \beta = \gamma = 0$带入$\ref{eqrn}$中得到<br />
+由于$n$是任意的，上式可由待定系数得到$\alpha = 1, \beta = \gamma = 0$(也可令$n=0,n=1$得到)，并带入$\ref{eqrn}$中得到<br />
 $$A(n) = 1 \label{eqan} $$</p>
 <p>令$R_n = n$, 有<br />
 $$<br />
