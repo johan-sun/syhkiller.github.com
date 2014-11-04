@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>孙渊汇的个人博客</title>
+  <meta name="description" content="sun yuanhui's blog" />
+  <meta name="keywords" content="computer, blog" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+  <link rel="stylesheet" type="text/css" href="/styles/highlight.css"/>
+  <script type="text/javascript" src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+		TeX: { equationNumbers: {autoNumber: "all"} },
+		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    });
+    $(function(){
+            $(".highlight").each(function(idx, obj){  
+                var linenos = $(obj).find(".lineno"); 
+                linenos.remove(); 
+                if(linenos.length)
+                   $(this).prepend($("<div class='linenoWrapper'></div>").append(linenos));
+             });
+    });
+  </script>
+<script type='text/javascript' src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+	<div id="logo">
+		<div id="logo_text">
+		<!-- class="logo_colour", allows you to change the colour of the text -->
+			<h1><a href="/index.html">Sun Yuanhui's<span class="logo_colour">Blog</span></a></h1>
+			<h2>孙渊汇的个人博客</h2>
+		</div>
+	</div>
+	<div id="menubar">
+		<ul id="menu">
+			<!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+			<li><a href="/index.html">Home</a></li>
+			<li><a href="/archive.html">Archive</a></li>
+			<li><a href="#">Contact Me</a></li>
+		</ul>
+	</div>
+</div>
+<div id="content_header"></div>
+
+    <div id="site_content">
+	  <div class="sidebar">
+	<!-- insert your sidebar items here -->
+	<h3>分类</h3>
+	<ul>
+		
+			<li><a href="/categories/学习">学习(1)</a></li>
+		
+			<li><a href="/categories/数学">数学(5)</a></li>
+		
+			<li><a href="/categories/前端">前端(2)</a></li>
+		
+			<li><a href="/categories/数据结构">数据结构(1)</a></li>
+		
+	</ul>
+
+	<h3>标签</h3>
+	<p class="taglist">
+	
+		<a href="/tag/分布式">分布式(1)</a>
+	
+		<a href="/tag/具体数学">具体数学(5)</a>
+	
+		<a href="/tag/js">js(1)</a>
+	
+		<a href="/tag/textile">textile(1)</a>
+	
+		<a href="/tag/mathjax">mathjax(1)</a>
+	
+		<a href="/tag/约瑟夫">约瑟夫(2)</a>
+	
+		<a href="/tag/平衡树">平衡树(1)</a>
+	
+	</p>
+		<!--
+	<h3>Search</h3>
+	<form method="post" action="#" id="search_form">
+		<p>
+			<input class="search" type="text" name="search_field" value="Enter keywords....." />
+			<input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="/styles/search.png" alt="Search" title="Search" />
+		</p>
+	</form>
+	-->
+</div>
+
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<h1>AVL-Tree</h1>
+<p style="margin-top:-16px; text-indent:0em;">04 November 2014 | CATEGORY:<a href="/categories/数据结构">数据结构</a> | TAGS:<a href="/tag/平衡树">平衡树</a>&nbsp;</p>
+<div class="post">
+<p>AVL平衡树是一颗二叉搜索树，并且通过一系列旋转操作保持树的平衡，分LL，LR，RL，RR，其中LL，RR与LR，RL对称。</p>
+
+<h2 id="section">平衡树的插入</h2>
+<p>由于二叉搜索树的中序遍历就是一个有序数组，我们这里用数组加括号表示一科树，大写字母表示一整棵树，小写字母表示树根，如$AxB$表示一棵树树根为x，
+左子树为A，右子树为B。</p>
+
+<h3 id="avl">AVL的旋转操作</h3>
+<p>AVL的旋转操作实际上保证了二叉搜索树旋转后仍然是一颗二叉所搜树，有了以上的表示方法，我们很容易证明旋转操作的正确性，对于一棵树$(AxB)yC$表示树根为y，左子树为$(AxB)$，
+右子树为C，左子树的树根为x，左子树的左子树为A，左子树的右子树为B。</p>
+
+<p>对节点y做右旋操作，我们可以得到$(AxB)yC \rightarrow Ax(ByC)$，那么旋转操作可以认为是结合律，基对于某个节点左旋转，及相应的将相邻的括号移动到节点所在的位置。</p>
+
+<h3 id="section-1">外插</h3>
+<p>设$b(x)$表示节点的平衡因子，-1标识左子树比右子树高1层，0标识一样高，1表示右子树比左子树高一层, 用b’(x)表示对x进行旋转操作后的平衡因子。</p>
+
+<p>设$h(T)$表示树T的高度，已知AVL树$AxB$, 发现插入z到A后，树失衡，x是回溯上来的第一个失衡跟节点。</p>
+
+<p>设$h(B) = l$，我们有$h(A) = l + 1$，$b(x) = -1$，我们将A展开，有$A = CyD$，及$AxB = (CyD)xB$，有$h(CyD) = h(A) = l + 1, \max(h(C), h(D)) = l$</p>
+
+<p>并且我们可以证明$h(C) = h(D) = l$，假设$h(C) &gt; h(D)$，如果z插入到C，那么第一个失衡节点将是y，如果插入到D，那么树不会增高，x将不会失衡，所以我们有</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{split}
+h(B) &= l\\
+h(C) &= l\\
+h(D) &= l\\
+h(CyD) &= \max(h(C), h(D)) + 1 = l + 1\\
+h((CyD)xB) &= \max(h(CyD), h(B)) + 1 = l + 2
+\end{split}
+ %]]></script>
+
+<p>如果z插入到C，我们得到$(C’yD)xB$，其中$h(C’) = l+1,b(y) = -1, b(x) = -2$，这就是一个外插，我们对x做右旋操作，得到$C’y(DxB)$，此时$b’(y) = 0, b’(x) = 0$，树没有增高。</p>
+
+<h3 id="section-2">内插</h3>
+
+<p>对于$(CyD)xB$如果z插入到D中失衡，我们需要将D在递归展开，原树就是$(Cy(EmF))xB$，我们可以知道$h(EmF) = \max(h(E), h(F)) + 1 = l$，同理我们还是可以证明$h(E) = h(F) = l - 1$，
+插入z后树变为$(Cy(E’mF))xB$或者$(Cy(EmF’))xB$，我们有</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{split}
+h(B) &= l\\
+h(C) &= l\\
+h(E) &= l - 1\\
+h(F) &= l - 1\\
+h(E') &= l\\
+h(F') &= l\\
+h(EmF) &= l\\
+h(E'mF) &= l + 1\\
+h(EmF') &= l + 1\\
+\end{split}
+ %]]></script>
+
+<p>前者$b(m) = -1$，后者$b(m) = 1$, 两者的$b(y) = 1, b(x) = -2$, 通过对y左旋得到$((CyE)mF’)xB$或者$((CyE’)mF)xB$，然后对x右旋得到
+$(CyE’)m(FxB)$或者$(CyE)m(F’xB)$，其中前者$b’(y) = 0, b’(x) = 1$，后者$b’(y) = -1, b’(x) = 0$， 两者$b’(m) = 0$，树没有增高。</p>
+
+<p>当然考虑D与C是空树，那么就是$(y(z))x \rightarrow ((y)z)x \rightarrow (y)z(x)$, $b’(z) = b’(x) = b’(y) = 0$</p>
+
+<h3 id="section-3">代码</h3>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno">  1</span> <span class="k">struct</span> <span class="n">Node</span>
+<span class="lineno">  2</span> <span class="p">{</span>
+<span class="lineno">  3</span>     <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+<span class="lineno">  4</span>     <span class="kt">int</span> <span class="n">balance</span><span class="p">;</span>
+<span class="lineno">  5</span>     <span class="n">Node</span><span class="o">*</span> <span class="n">left</span><span class="p">;</span>
+<span class="lineno">  6</span>     <span class="n">Node</span><span class="o">*</span> <span class="n">right</span><span class="p">;</span>
+<span class="lineno">  7</span>     <span class="n">Node</span><span class="p">(</span> <span class="kt">int</span> <span class="n">key</span>  <span class="p">)</span><span class="o">:</span><span class="n">data</span><span class="p">(</span><span class="n">key</span><span class="p">),</span><span class="n">balance</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">left</span><span class="p">(</span><span class="n">nullptr</span><span class="p">),</span><span class="n">right</span><span class="p">(</span><span class="n">nullptr</span><span class="p">){}</span>
+<span class="lineno">  8</span> <span class="p">};</span>
+<span class="lineno">  9</span> 
+<span class="lineno"> 10</span> <span class="kt">void</span> <span class="nf">right_rotate</span><span class="p">(</span><span class="n">Node</span><span class="o">**</span> <span class="n">proot</span><span class="p">)</span>
+<span class="lineno"> 11</span> <span class="p">{</span>
+<span class="lineno"> 12</span>     <span class="n">Node</span><span class="o">*</span> <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+<span class="lineno"> 13</span>     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+<span class="lineno"> 14</span>     <span class="n">left</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="o">*</span><span class="n">proot</span><span class="p">;</span>
+<span class="lineno"> 15</span>     <span class="o">*</span><span class="n">proot</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+<span class="lineno"> 16</span> 
+<span class="lineno"> 17</span> <span class="p">}</span>
+<span class="lineno"> 18</span> <span class="kt">void</span> <span class="nf">left_rotate</span><span class="p">(</span><span class="n">Node</span><span class="o">**</span> <span class="n">proot</span><span class="p">)</span>
+<span class="lineno"> 19</span> <span class="p">{</span>
+<span class="lineno"> 20</span>     <span class="n">Node</span><span class="o">*</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+<span class="lineno"> 21</span>     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+<span class="lineno"> 22</span>     <span class="n">right</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="o">*</span><span class="n">proot</span><span class="p">;</span>
+<span class="lineno"> 23</span>     <span class="o">*</span><span class="n">proot</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+<span class="lineno"> 24</span> 
+<span class="lineno"> 25</span> <span class="p">}</span>
+<span class="lineno"> 26</span> <span class="c1">//有了以上的分析，我们只要在insert返回proot是否增高就能很方便的写出插入函数</span>
+<span class="lineno"> 27</span> <span class="kt">int</span> <span class="nf">insert</span><span class="p">(</span><span class="n">Node</span><span class="o">**</span> <span class="n">proot</span><span class="p">,</span> <span class="kt">int</span> <span class="n">key</span><span class="p">)</span>
+<span class="lineno"> 28</span> <span class="p">{</span>
+<span class="lineno"> 29</span>     <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span>  <span class="p">)</span>
+<span class="lineno"> 30</span>     <span class="p">{</span>
+<span class="lineno"> 31</span>         <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="lineno"> 32</span>         <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno"> 33</span> 
+<span class="lineno"> 34</span>     <span class="p">}</span>
+<span class="lineno"> 35</span> 
+<span class="lineno"> 36</span>     <span class="k">if</span> <span class="p">(</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">data</span>  <span class="p">)</span>
+<span class="lineno"> 37</span>     <span class="p">{</span>
+<span class="lineno"> 38</span>         <span class="kt">int</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+<span class="lineno"> 39</span>         <span class="kt">int</span> <span class="n">rt</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">acc</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//原来平衡，变不平衡，肯定有子树增高</span>
+<span class="lineno"> 40</span>         <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">acc</span><span class="p">;</span>
+<span class="lineno"> 41</span>         <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span> <span class="p">)</span>
+<span class="lineno"> 42</span>         <span class="p">{</span>
+<span class="lineno"> 43</span>             <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span>  <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+<span class="lineno"> 44</span>             <span class="p">{</span><span class="c1">//外插</span>
+<span class="lineno"> 45</span>                 <span class="n">right_rotate</span><span class="p">(</span><span class="n">proot</span><span class="p">);</span>
+<span class="lineno"> 46</span>                 <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 47</span>                 <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 48</span>             <span class="p">}</span><span class="k">else</span> 
+<span class="lineno"> 49</span>             <span class="p">{</span><span class="c1">//内插</span>
+<span class="lineno"> 50</span>                 <span class="n">assert</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span> <span class="mi">1</span>  <span class="p">);</span>
+<span class="lineno"> 51</span>                 <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">==</span> <span class="n">key</span>  <span class="p">)</span>
+<span class="lineno"> 52</span>                 <span class="p">{</span>
+<span class="lineno"> 53</span>                     <span class="n">left_rotate</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+<span class="lineno"> 54</span>                     <span class="n">right_rotate</span><span class="p">(</span><span class="n">proot</span><span class="p">);</span>
+<span class="lineno"> 55</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 56</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 57</span> 
+<span class="lineno"> 58</span>                 <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno"> 59</span>                     <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span><span class="p">;</span> <span class="n">assert</span><span class="p">(</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span>  <span class="p">);</span>
+<span class="lineno"> 60</span>                     <span class="n">left_rotate</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+<span class="lineno"> 61</span>                     <span class="n">right_rotate</span><span class="p">(</span><span class="n">proot</span><span class="p">);</span>
+<span class="lineno"> 62</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">?</span> <span class="mi">0</span><span class="o">:-</span><span class="mi">1</span><span class="p">;</span>
+<span class="lineno"> 63</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">?</span>  <span class="mi">1</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 64</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 65</span>                 <span class="p">}</span>
+<span class="lineno"> 66</span>             <span class="p">}</span>
+<span class="lineno"> 67</span>             <span class="k">return</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//旋转后一定不会增高</span>
+<span class="lineno"> 68</span>         <span class="p">}</span>
+<span class="lineno"> 69</span>         <span class="k">return</span> <span class="n">rt</span><span class="p">;</span><span class="c1">//返回是否增高</span>
+<span class="lineno"> 70</span>     <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">key</span> <span class="o">&gt;</span>  <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">data</span> <span class="p">)</span>
+<span class="lineno"> 71</span>     <span class="p">{</span>
+<span class="lineno"> 72</span>         <span class="kt">int</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+<span class="lineno"> 73</span>         <span class="kt">int</span> <span class="n">rt</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">acc</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 74</span>         <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">acc</span><span class="p">;</span>
+<span class="lineno"> 75</span>         <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">)</span>
+<span class="lineno"> 76</span>         <span class="p">{</span>
+<span class="lineno"> 77</span>             <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span>  <span class="mi">1</span> <span class="p">)</span>
+<span class="lineno"> 78</span>             <span class="p">{</span><span class="c1">//外插</span>
+<span class="lineno"> 79</span>                 <span class="n">left_rotate</span><span class="p">(</span><span class="n">proot</span><span class="p">);</span>
+<span class="lineno"> 80</span>                 <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 81</span>                 <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 82</span>             <span class="p">}</span><span class="k">else</span> 
+<span class="lineno"> 83</span>             <span class="p">{</span><span class="c1">//内插</span>
+<span class="lineno"> 84</span>                 <span class="n">assert</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>  <span class="p">);</span>
+<span class="lineno"> 85</span>                 <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">==</span> <span class="n">key</span>  <span class="p">)</span>
+<span class="lineno"> 86</span>                 <span class="p">{</span>
+<span class="lineno"> 87</span>                     <span class="n">right_rotate</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+<span class="lineno"> 88</span>                     <span class="n">left_rotate</span><span class="p">(</span><span class="n">proot</span><span class="p">);</span>
+<span class="lineno"> 89</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 90</span>                 <span class="p">}</span><span class="k">else</span>
+<span class="lineno"> 91</span>                 <span class="p">{</span>
+<span class="lineno"> 92</span>                     <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span><span class="p">;</span>
+<span class="lineno"> 93</span>                     <span class="n">assert</span><span class="p">(</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span>  <span class="p">);</span>
+<span class="lineno"> 94</span>                     <span class="n">right_rotate</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+<span class="lineno"> 95</span>                     <span class="n">left_rotate</span><span class="p">(</span><span class="n">proot</span><span class="p">);</span>
+<span class="lineno"> 96</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="mi">0</span><span class="o">:-</span><span class="mi">1</span><span class="p">;</span>
+<span class="lineno"> 97</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 98</span>                     <span class="p">(</span><span class="o">*</span><span class="n">proot</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 99</span>                 <span class="p">}</span>
+<span class="lineno">100</span>             <span class="p">}</span>
+<span class="lineno">101</span>             <span class="k">return</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//旋转后子树一定不会增高</span>
+<span class="lineno">102</span>         <span class="p">}</span>
+<span class="lineno">103</span>         <span class="k">return</span> <span class="n">rt</span><span class="p">;</span><span class="c1">//返回这棵树是否增高</span>
+<span class="lineno">104</span>     <span class="p">}</span>
+<span class="lineno">105</span>     <span class="c1">//已存在元素不做处理</span>
+<span class="lineno">106</span>     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">107</span> <span class="p">}</span></code></pre></div>
+
+
+</div>
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_douban"></a>
+	<a class="jiathis_button_fb"></a>
+	<a class="jiathis_button_twitter"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1377138298698457" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"syhkiller"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- Duoshuo Comment END -->
+<script type="text/javascript">
+(function (){
+ 	var MaxCnt = 30;
+	var i = 0;
+	var timer = setInterval(function(){
+			++i;
+			if(i >= MaxCnt){ clearInterval(timer); return;}
+			if(MathJax.Hub.Queue){
+				if(document.getElementsByClassName('ds-powered-by').length){
+					MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('ds-thread')]);
+					clearInterval(timer);
+					return;
+				}
+			}
+		},1000);
+ })();
+</script>
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> on GitHub | Copyright &copy; 孙渊汇</p>
+    </div>
+  </div>
+</body>
+</html>
+

@@ -53,28 +53,32 @@
 	<h3>分类</h3>
 	<ul>
 		
-			<li><a href="/categories/前端">前端(2)</a></li>
-		
 			<li><a href="/categories/学习">学习(1)</a></li>
 		
 			<li><a href="/categories/数学">数学(5)</a></li>
+		
+			<li><a href="/categories/前端">前端(2)</a></li>
+		
+			<li><a href="/categories/数据结构">数据结构(1)</a></li>
 		
 	</ul>
 
 	<h3>标签</h3>
 	<p class="taglist">
 	
-		<a href="/tag/textile">textile(1)</a>
-	
-		<a href="/tag/mathjax">mathjax(1)</a>
+		<a href="/tag/分布式">分布式(1)</a>
 	
 		<a href="/tag/具体数学">具体数学(5)</a>
 	
 		<a href="/tag/js">js(1)</a>
 	
-		<a href="/tag/分布式">分布式(1)</a>
+		<a href="/tag/textile">textile(1)</a>
+	
+		<a href="/tag/mathjax">mathjax(1)</a>
 	
 		<a href="/tag/约瑟夫">约瑟夫(2)</a>
+	
+		<a href="/tag/平衡树">平衡树(1)</a>
 	
 	</p>
 		<!--
@@ -99,20 +103,18 @@
 <ul>
 	<li>配置行内,行间显示模式<br />
 mathjax 使用Json方式配置行内行间模式,所谓行内,行间模式是指除了 <code>\begin{equation} \end{equation}</code> 等模式,mathjax还支持自定义的行内行间模式,也就是说在指定模式内,才会被渲染,默认matjax会使用 <code>$${}$$</code> 渲染行间公式,等价于 <code>\begin{equation} \end{equation}</code> , 可以使用displayMath指定模式,我采用了如下配置,其中 <code>equationNumbers:{autoNumber:"all"}</code> 是为了产生标签,用于引用, 详细可以查看 <a href="http://docs.mathjax.org/en/latest/configuration.html#using-in-line-configuration-options">这里</a><br />
-<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
 <span class="lineno">2</span> <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
 <span class="lineno">3</span>     <span class="nx">TeX</span><span class="o">:</span> <span class="p">{</span> <span class="nx">equationNumbers</span><span class="o">:</span> <span class="p">{</span><span class="nx">autoNumber</span><span class="o">:</span> <span class="s2">&quot;all&quot;</span><span class="p">}</span> <span class="p">},</span>
 <span class="lineno">4</span>     <span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span><span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[[</span><span class="s2">&quot;$&quot;</span><span class="p">,</span><span class="s2">&quot;$&quot;</span><span class="p">],[</span><span class="s2">&quot;\\(&quot;</span><span class="p">,</span><span class="s2">&quot;\\)&quot;</span><span class="p">]]},</span>
 <span class="lineno">5</span> <span class="p">});</span>
-<span class="lineno">6</span> <span class="nt">&lt;/script&gt;</span>
-</code></pre></div></li>
+<span class="lineno">6</span> <span class="nt">&lt;/script&gt;</span></code></pre></div></li>
 </ul>
 <ul>
 	<li>加载MathJax<br />
-<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="lineno">1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span>
 <span class="lineno">2</span>     <span class="na">src=</span><span class="s">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span><span class="nt">&gt;</span>
-<span class="lineno">3</span> <span class="nt">&lt;/script&gt;</span>
-</code></pre></div><br />
+<span class="lineno">3</span> <span class="nt">&lt;/script&gt;</span></code></pre></div><br />
 我采用了CDN的方式加载MathJax引擎, config可以获取特定的配置,配置选项有
 	<ul>
 		<li>default</li>
@@ -131,7 +133,7 @@ mathjax 使用Json方式配置行内行间模式,所谓行内,行间模式是指
 <p>找了许久,终于在example的sample-dynamic-2.html中找到了可能用到的函数 <code>Typeset</code> 和 <code>Queue</code> , 找到 <a href="http://docs.mathjax.org/en/latest/api/index.html">官方文档</a> , <a href="http://docs.mathjax.org/en/latest/api/hub.html#Typeset">MathJax.Hub.Typeset</a> 可以用于排版给定的html对象内的内容,正式我需要的, 还有一个就是 <a href="http://docs.mathjax.org/en/latest/api/hub.html#methods">MathJax.Hub.Queue</a></p>
 <p><code>MathJax.Hub.Queue</code> 这个函数执行后会返回一个队列,js执行都是异步的,但是有了这个队列就可以模拟出同步的执行,而且MathJax自己的渲染过程也是通过这个进行流程控制,也就是我们的callback一定会在MathJax引擎的渲染工作完成后执行.</p>
 <p>好吧,那么就可以自己动手了,首先依然是全局的渲染工作,然后我加了一个定时器,每秒进行一次轮询,查看 <code>class="ds-powered-by"</code> 对象有没有出现(多说加载的评论栏最后一个,我就用这个笨办法判断多说有没有加载完毕), 出现了将整个多说评论栏重新排版, 当然其中也进行了最大轮询的限制,以免在网络不好的情况下浪费游览器资源,代码如下:<br />
-<div class="highlight"><pre><code class="html"><span class="lineno"> 1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="lineno"> 1</span> <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
 <span class="lineno"> 2</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
 <span class="lineno"> 3</span>     <span class="kd">var</span> <span class="nx">MaxCnt</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
 <span class="lineno"> 4</span>     <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -147,8 +149,7 @@ mathjax 使用Json方式配置行内行间模式,所谓行内,行间模式是指
 <span class="lineno">14</span>        <span class="p">}</span>
 <span class="lineno">15</span>      <span class="p">},</span><span class="mi">1000</span><span class="p">);</span>
 <span class="lineno">16</span>  <span class="p">})();</span>
-<span class="lineno">17</span> <span class="nt">&lt;/script&gt;</span>
-</code></pre></div></p>
+<span class="lineno">17</span> <span class="nt">&lt;/script&gt;</span></code></pre></div></p>
 <p>当然如果不希望某个标签被渲染,只要加上 <code>class="tex2jax_ignore"</code> 即可让其忽略渲染.</p>
 <p><strong><em>最后,如果有人知道如何在多说评论加载完毕之后执行指定的回调函数,可以在评论告诉我,万分感谢!</em></strong></p>
 </div>
